@@ -1,0 +1,16 @@
+# Dépendances
+/node_modules
+
+# Fichier de build
+/.next
+
+# Fichier de configuration
+*.config.js
+.eslintrc.json
+.prettierrc
+.prettierrc.json 
+/next-env.d.ts
+/package.json
+/package-lock.json
+/README.md
+/tsconfig.json
