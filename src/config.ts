@@ -1,5 +1,4 @@
 export const siteConfig = {
-    name: 'Kulteo',
-    description: '',
+  name: 'Kulteo',
+  description: '',
 };
-  

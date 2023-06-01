@@ -2,13 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    @apply bg-black text-white;
+body {
+  @apply bg-black text-white;
 }
 
-.hero{
-    background-image: url('../../public/img/hero_img.webp');
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    background-position: center;
+.hero {
+  background-image: url('../../public/img/hero_img.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
