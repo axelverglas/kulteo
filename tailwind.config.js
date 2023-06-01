@@ -18,6 +18,7 @@ module.exports = {
       colors: {
         primary: '#E4B589',
         secondary: '#AB6FF9',
+        whitesmoke: '#F4F4F4'
       },
     },
   },

@@ -22,13 +22,16 @@ export default function Hero() {
 
         <Link
           href={'/'}
-          className="inline-block rounded-xl bg-secondary px-4 pb-1 pt-2 md:pb-3 md:pt-4 text-black"
+          className="inline-block rounded-xl bg-secondary px-4 pb-1 pt-1.5 text-black md:pb-3 md:pt-4"
         >
           Explorer {siteConfig.name} !
         </Link>
 
-        <a href='#about' className="absolute bottom-10 left-1/2 flex flex-col items-center justify-center">
-          <p className='mb-2'>Suivant</p>
+        <a
+          href="#about"
+          className="absolute bottom-10 left-1/2 flex flex-col items-center justify-center"
+        >
+          <p className="mb-2">Suivant</p>
           <svg
             width="46"
             height="39"
