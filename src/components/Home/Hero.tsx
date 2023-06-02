@@ -29,7 +29,7 @@ export default function Hero() {
 
         <a
           href="#about"
-          className="absolute bottom-12 md:bottom-6 left-1/2 right-1/2 flex flex-col items-center justify-center"
+          className="absolute bottom-12 left-1/2 right-1/2 flex flex-col items-center justify-center md:bottom-6"
         >
           <p className="mb-2">Suivant</p>
           <svg

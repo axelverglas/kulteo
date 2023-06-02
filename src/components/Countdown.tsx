@@ -36,7 +36,7 @@ function Countdown({ endDate }: CountdownProps) {
   }
 
   return (
-    <div className="my-12 flex justify-center gap-8">
+    <div className="mt-12 flex justify-center gap-8">
       <div className="flex flex-col items-center">
         <div className="flex gap-2">
           {splitDigits(timeLeft.days).map((digit, index) => (
@@ -69,8 +69,8 @@ function TimeUnit({ value }: TimeUnitProps) {
   return (
     <div className="relative flex flex-col items-center">
       <div className="absolute top-[-0.25rem] h-5 w-5 -translate-y-1/2 transform rounded-full border-2 border-primary"></div>
-      <div className="z-10 mb-2 flex h-16 w-11 items-center justify-center rounded-lg bg-primary">
-        <p className="font-roc text-4xl text-black">{value}</p>
+      <div className="z-10 mb-2 flex h-14 w-10 items-center justify-center rounded-lg bg-primary md:h-16 md:w-11">
+        <p className="font-roc text-2xl text-black md:text-4xl">{value}</p>
       </div>
     </div>
   );

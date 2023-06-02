@@ -1,5 +1,5 @@
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import Navbar from './Navbar';
+import Footer from './Footer';
 
 interface DefaultLayoutProps {
   children: React.ReactNode;
@@ -12,5 +12,5 @@ export default function DefaultLayout({ children }: DefaultLayoutProps) {
       <main>{children}</main>
       <Footer />
     </>
-  )
+  );
 }
