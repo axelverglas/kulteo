@@ -3,9 +3,9 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer>
+    <footer className='bg-black'>
       <div className="container max-w-6xl">
-        <div className="my-12 flex items-center justify-center">
+        <div className="py-12 flex items-center justify-center">
           <Image
             src="./img/logo.svg"
             alt="Kulteo"

@@ -36,7 +36,7 @@ function Countdown({ endDate }: CountdownProps) {
   }
 
   return (
-    <div className="mt-12 flex justify-center gap-8">
+    <div className="mt-12 flex justify-center gap-4 md:gap-8">
       <div className="flex flex-col items-center">
         <div className="flex gap-2">
           {splitDigits(timeLeft.days).map((digit, index) => (
