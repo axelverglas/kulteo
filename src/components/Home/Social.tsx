@@ -2,7 +2,7 @@ import { BsFacebook, BsDiscord, BsInstagram, BsLinkedin } from 'react-icons/bs';
 
 export default function Social() {
   return (
-    <section className="relative py-12 md:py-16">
+    <section className="relative pt-12 pb-24 md:pt-16 md:pb-32">
       <div className="container">
         <div className="hidden md:block absolute left-96 top-20 w-24 h-24">
           <svg

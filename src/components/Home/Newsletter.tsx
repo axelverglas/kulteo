@@ -5,10 +5,10 @@ import { toast } from 'react-hot-toast';
 
 const schema = z.object({
   email: z.string().email({
-    message: 'Entrer une adresse email valide',
+    message: 'Entrez une adresse email valide',
   }),
   checkbox: z.boolean().refine(value => value === true, {
-    message: 'Vous devez accepté les conditions.',
+    message: 'Vous devez accepter les conditions.',
   }),
 });
 
@@ -39,7 +39,8 @@ export default function NewsletterForm() {
   return (
     <section className="py-12 md:py-16">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <h2 className="mb-6 text-center font-roc text-3xl text-black">
+        <h2 className="mb-6 text-center font-roc text-3xl text-white">
+          Notre {' '}
           <span className="rounded-xl bg-primary px-2 pb-1 pt-2">
             Newsletter
           </span>
