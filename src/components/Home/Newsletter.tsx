@@ -41,7 +41,7 @@ export default function NewsletterForm() {
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <h2 className="mb-6 text-center font-roc text-3xl text-white">
           Notre {' '}
-          <span className="rounded-xl bg-primary px-2 pb-1 pt-2">
+          <span className="rounded-xl bg-primary px-2 pb-1 pt-2 text-black">
             Newsletter
           </span>
         </h2>
