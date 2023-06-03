@@ -5,21 +5,22 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === 'POST') {
-    const { email } = req.body;
+    const { email, userType } = req.body;
+
+    const listIds = userType === 'particulier' ? [5] : [6];
 
     const response = await fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'api-key': process.env.BREVO_API_KEY as string,
+        'api-key': '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',
       },
       body: JSON.stringify({
         email,
         updateEnabled: false,
         attributes: {
-          // additional attributes if needed
         },
-        listIds: [5], // replace with your list id
+        listIds: listIds,
       }),
     });
 

@@ -27,7 +27,7 @@ export default function Hero() {
           Explorer {siteConfig.name} !
         </Link>
 
-        <Link
+        <a
           href="#about"
           className="absolute bottom-12 left-1/2 right-1/2 flex flex-col items-center justify-center md:bottom-6"
         >
@@ -52,7 +52,7 @@ export default function Hero() {
               strokeLinecap="round"
             />
           </svg>
-        </Link>
+        </a>
       </div>
     </section>
   );
