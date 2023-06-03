@@ -16,7 +16,7 @@ export default function Footer() {
         </div>
         <div className="border-[0.5px] border-whitesmoke"></div>
         <div className="my-8 flex items-center justify-center text-whitesmoke">
-          <Link href={'/'}>Mentions légales</Link>
+          <Link href={'/legal'} className='hover:text-white/80'>Mentions légales</Link>
           <span className="mx-1">-</span>
           <p>Étudiants à DC Paris</p>
         </div>
