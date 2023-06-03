@@ -75,7 +75,7 @@ export default function NewsletterForm() {
               </button>
             </div>
           </div>
-          <div className="flex flex-col items-center justify-center rounded-xl border-[2px] border-primary md:py-12 p-7">
+          <div className="flex flex-col items-center justify-center rounded-xl border-[2px] border-primary p-7 md:py-12">
             <h2 className="text-center font-roc text-3xl text-white">
               Newsletter
             </h2>
@@ -97,7 +97,7 @@ export default function NewsletterForm() {
                 />
                 <button
                   type="submit"
-                  className="absolute right-2 top-2 h-12 rounded-[3rem] bg-secondary px-4 font-semibold text-black"
+                  className="absolute right-2 top-2 h-12 rounded-[3rem] bg-secondary hover:bg-secondary/80 px-4 font-semibold text-black"
                 >
                   Envoyer
                 </button>

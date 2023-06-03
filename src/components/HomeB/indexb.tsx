@@ -6,7 +6,6 @@ import About from '@/components/HomeB/About';
 import NewsletterForm from '@/components/HomeB/Newsletter';
 import Launch from '@/components/HomeB/Launch';
 import Social from '@/components/HomeB/Social';
-import Soluce from '@/components/HomeB/Soluce';
 
 export default function Home() {
   return (
@@ -17,7 +16,6 @@ export default function Home() {
       <DefaultLayout>
         <Hero />
         <About />
-        <Soluce />
         <Launch />
         <NewsletterForm />
         <Social />

@@ -2,6 +2,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { toast } from 'react-hot-toast';
+import { useState } from 'react';
 
 const schema = z.object({
   email: z.string().email({
@@ -26,18 +27,27 @@ export default function NewsletterForm() {
   const onSubmit: SubmitHandler<NewsletterFormInputs> = async data => {
     const res = await fetch('/api/newsletter', {
       method: 'POST',
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+        email: data.email,
+        userType,
+      }),
       headers: {
         'Content-Type': 'application/json',
       },
     });
 
-    await res.json();
-    toast.success('Merci pour votre inscription !');
+    if (res.ok) {
+      await res.json();
+      toast.success('Merci pour votre inscription !');
+    } else {
+      toast.error('Une erreur est survenue');
+    }
   };
 
+  const [userType, setUserType] = useState('particulier');
+
   return (
-    <section className="py-12 md:py-16">
+    <section className="pt-12 md:pt-24">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <h2 className="mb-6 text-center font-roc text-3xl text-white">
           Notre{' '}
@@ -63,7 +73,7 @@ export default function NewsletterForm() {
               />
               <button
                 type="submit"
-                className="absolute right-2 top-2 h-12 rounded-[3rem] bg-secondary px-4 font-semibold text-black"
+                className="absolute right-2 top-2 h-12 rounded-[3rem] bg-secondary hover:bg-secondary/80 px-4 font-semibold text-black"
               >
                 Envoyer
               </button>

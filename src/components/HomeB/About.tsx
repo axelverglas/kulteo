@@ -2,18 +2,23 @@ import { siteConfig } from '@/config';
 import Image from 'next/image';
 
 export default function About() {
+  const items = [
+    'Vous n’avez pas accès à la culture près de chez vous ?',
+    'Vous ne savez pas avec qui découvrir de nouvelles institutions culturels ?',
+    'Vous ne pouvez pas vous déplacez ?',
+  ];
+
   return (
     <section id="about" className="relative bg-primary py-12 md:py-24">
       <div className="container max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-2">
-          <div>
+          <div className="flex flex-col justify-center">
             <div className="flex md:block">
               <h2 className="mb-6 w-52 font-roc text-3xl text-black md:w-full md:text-4xl">
-                Mais c&apos;est quoi{' '}
                 <span className="rounded-xl bg-black px-2 pt-1 text-primary">
                   {siteConfig.name}
                 </span>{' '}
-                ?
+                c&apos;est quoi ?
               </h2>
               <div className="ml-4 flex h-[4.5rem] w-[4.5rem] flex-col items-start md:absolute md:right-44 md:top-14 md:h-28 md:w-28">
                 <svg
@@ -31,21 +36,11 @@ export default function About() {
               </div>
             </div>
 
-            <p className="mb-5 text-black">
-              Découvrez notre plateforme qui vous permettra de découvrir des
-              lieux et événements culturels en ligne depuis chez vous. Et ce
-              n’est pas tout :)
-            </p>
-            <p className="mb-5 text-black">
-              Discutez entre “Kulteove”, planifiez et déplacez-vous ensemble
-              avec d’autres passionnés.
-            </p>
-            <p className="text-black">
-              C’est le moment de s’embarquer dans une aventure immersive où la
-              culture et la découverte se rencontrent et deviennent une
-              véritable passerelle vers le savoir, l’échange et l’enrichissement
-              personnel.
-            </p>
+            <ul className="text-black">
+              {items.map((item, index) => (
+                <ListItem key={index} text={item} />
+              ))}
+            </ul>
           </div>
           <div className="hidden items-center justify-center md:flex">
             <Image
@@ -58,5 +53,33 @@ export default function About() {
         </div>
       </div>
     </section>
+  );
+}
+
+function SVGIcon() {
+  return (
+    <svg
+      width="21"
+      height="24"
+      viewBox="0 0 21 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M2.90119 2C7.66373 6.0462 17.0601 15.7495 18.2393 17.3756C23.9124 25.1982 -5.08324 23.5797 2.90119 16.5663C15.4978 5.5016 19.0798 2 19.5 2"
+        stroke="#111111"
+        strokeWidth="2.57143"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function ListItem({ text }: { text: string }) {
+  return (
+    <li className="mb-6 flex gap-2">
+      <SVGIcon />
+      {text}
+    </li>
   );
 }

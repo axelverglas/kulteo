@@ -2,7 +2,7 @@ import { BsFacebook, BsDiscord, BsInstagram, BsLinkedin } from 'react-icons/bs';
 
 export default function Social() {
   return (
-    <section className="relative pb-24 pt-12 md:pb-32 md:pt-16">
+    <section className="relative py-12 md:py-24">
       <div className="container">
         <div className="absolute left-96 top-20 hidden h-24 w-24 md:block">
           <svg
@@ -19,17 +19,18 @@ export default function Social() {
           </svg>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <h2 className="w-64 text-center font-roc text-3xl leading-[2.5rem] md:w-72 md:text-4xl md:leading-[3rem]">
-            Rejoignez nous dès{'  '}
-            <span className="rounded-xl bg-primary px-2 pb-1 pt-2 text-black">
-              aujourd&apos;hui
+          <h2 className="w-64 font-roc text-3xl leading-[2.5rem] md:w-72 md:text-4xl md:leading-[3rem]">
+            Retrouvez-nous{'  '}
+            <span className="mr-2 rounded-xl bg-primary px-2 pb-1 pt-2 text-black">
+              également
             </span>
+            sur:
           </h2>
           <div className="mt-12 flex space-x-10">
-            <BsFacebook className="h-10 w-10 md:h-14 md:w-14" />
-            <BsDiscord className="h-10 w-10 md:h-14 md:w-14" />
-            <BsInstagram className="h-10 w-10 md:h-14 md:w-14" />
-            <BsLinkedin className="h-10 w-10 md:h-14 md:w-14" />
+            <BsFacebook className="h-10 w-10 md:h-14 md:w-14 hover:text-white/80" />
+            <BsDiscord className="h-10 w-10 md:h-14 md:w-14 hover:text-white/80" />
+            <BsInstagram className="h-10 w-10 md:h-14 md:w-14 hover:text-white/80" />
+            <BsLinkedin className="h-10 w-10 md:h-14 md:w-14 hover:text-white/80" />
           </div>
         </div>
       </div>

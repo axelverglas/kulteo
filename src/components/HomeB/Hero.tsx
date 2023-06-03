@@ -6,13 +6,11 @@ export default function Hero() {
     <section className="hero relative flex h-screen min-h-screen flex-col justify-center">
       <div className="container max-w-6xl">
         <h1 className="w-[20rem] font-roc text-4xl leading-[3rem] md:w-[48rem] md:text-6xl md:leading-[4.25rem]">
-          Rendre la culture{' '}
-          <span className="rounded-xl bg-primary px-2 pt-1 text-black md:px-3 md:pt-2">
-            accessible
+          Découvrez la culture{' '}
+          <span className="rounded-xl bg-primary px-2 pt-1 text-black md:mr-2 md:px-3 md:pt-2">
+            autrement
           </span>
-          <span className="block md:ml-4 md:inline">
-            c&apos;est possible avec {siteConfig.name}
-          </span>
+          avec {siteConfig.name}
         </h1>
 
         <p className="mb-8 mt-4 md:w-[30rem]">
@@ -22,12 +20,12 @@ export default function Hero() {
 
         <Link
           href={'/'}
-          className="inline-block rounded-xl bg-secondary px-4 pb-1 pt-1.5 text-black md:pb-3 md:pt-4"
+          className="inline-block rounded-xl bg-secondary hover:bg-secondary/80 px-4 pb-1 pt-1.5 text-black md:pb-3 md:pt-4"
         >
           Explorer {siteConfig.name} !
         </Link>
 
-        <a
+        <Link
           href="#about"
           className="absolute bottom-12 left-1/2 right-1/2 flex flex-col items-center justify-center md:bottom-6"
         >
@@ -52,7 +50,7 @@ export default function Hero() {
               strokeLinecap="round"
             />
           </svg>
-        </a>
+        </Link>
       </div>
     </section>
   );

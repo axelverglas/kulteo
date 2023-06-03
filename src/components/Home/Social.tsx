@@ -26,10 +26,10 @@ export default function Social() {
             </span>
           </h2>
           <div className="mt-12 flex space-x-10">
-            <BsFacebook className="h-10 w-10 md:h-14 md:w-14" />
-            <BsDiscord className="h-10 w-10 md:h-14 md:w-14" />
-            <BsInstagram className="h-10 w-10 md:h-14 md:w-14" />
-            <BsLinkedin className="h-10 w-10 md:h-14 md:w-14" />
+            <BsFacebook className="h-10 w-10 md:h-14 md:w-14 hover:text-white/80" />
+            <BsDiscord className="h-10 w-10 md:h-14 md:w-14 hover:text-white/80" />
+            <BsInstagram className="h-10 w-10 md:h-14 md:w-14 hover:text-white/80" />
+            <BsLinkedin className="h-10 w-10 md:h-14 md:w-14 hover:text-white/80" />
           </div>
         </div>
       </div>
