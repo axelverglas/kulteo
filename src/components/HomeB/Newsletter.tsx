@@ -73,7 +73,7 @@ export default function NewsletterForm() {
               />
               <button
                 type="submit"
-                className="absolute right-2 top-2 h-12 rounded-[3rem] bg-secondary hover:bg-secondary/80 px-4 font-semibold text-black"
+                className="absolute right-2 top-2 h-12 rounded-[3rem] bg-secondary px-4 font-semibold text-black hover:bg-secondary/80"
               >
                 Envoyer
               </button>
