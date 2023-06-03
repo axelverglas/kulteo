@@ -6,6 +6,11 @@ export default async function handler(
 ) {
   if (req.method === 'POST') {
     const { email, userType } = req.body;
+    const apiKey = process.env.BREVO_API_KEY;
+
+    if (!apiKey) {
+      return res.status(500).json({ error: 'Missing API Key' });
+    }
 
     const listIds = userType === 'particulier' ? [5] : [6];
 
@@ -13,13 +18,12 @@ export default async function handler(
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'api-key': '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',
+        'api-key': apiKey,
       },
       body: JSON.stringify({
         email,
         updateEnabled: false,
-        attributes: {
-        },
+        attributes: {},
         listIds: listIds,
       }),
     });

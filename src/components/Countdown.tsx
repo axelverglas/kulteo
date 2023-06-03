@@ -43,7 +43,7 @@ function Countdown({ endDate }: CountdownProps) {
             <TimeUnit key={index} value={digit} />
           ))}
         </div>
-        <p className="text-center">Days</p>
+        <p className="text-center">Jours</p>
       </div>
       <div className="flex flex-col items-center">
         <div className="flex gap-2">
@@ -51,7 +51,7 @@ function Countdown({ endDate }: CountdownProps) {
             <TimeUnit key={index} value={digit} />
           ))}
         </div>
-        <p className="text-center">Hours</p>
+        <p className="text-center">Heures</p>
       </div>
       <div className="flex flex-col items-center">
         <div className="flex gap-2">
