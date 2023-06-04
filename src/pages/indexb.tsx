@@ -12,7 +12,9 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>{siteConfig.name}</title>
+        <title>
+          {siteConfig.name}, la plateforme qui rend la culture accessible à tous
+        </title>
       </Head>
       <DefaultLayout>
         <Hero />

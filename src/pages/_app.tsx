@@ -3,8 +3,10 @@ import type { AppProps } from 'next/app';
 import localFont from 'next/font/local';
 import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
+import { siteConfig } from '@/config';
 
 import { init } from '@socialgouv/matomo-next';
+import Head from 'next/head';
 
 const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL;
 const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID;
@@ -43,6 +45,43 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <Head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="description"
+          content={siteConfig.description}
+        />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href={siteConfig.url} />
+        <link rel="dns-prefetch" href={siteConfig.url} />
+        <link rel="preconnect" href={siteConfig.url} />
+
+        {/* Open Graph */}
+        <meta property="og:title" content={siteConfig.name} />
+        <meta
+          property="og:description"
+          content={siteConfig.description}
+        />
+        <meta
+          property="og:image"
+          content="../../public/img/logo.svg"
+        />
+        <meta property="og:url" content={siteConfig.url}/>
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:title" content={siteConfig.name} />
+        <meta
+          name="twitter:description"
+          content={siteConfig.description}
+        />
+        <meta
+          name="twitter:image"
+          content="../../public/img/logo.svg"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Head>
       <style jsx global>
         {`
           :root {

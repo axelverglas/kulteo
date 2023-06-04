@@ -28,7 +28,7 @@ export default function Social() {
             </span>
           </h2>
           <div className="mt-12 flex space-x-10">
-          <Link href={siteConfig.social.facebook}>
+            <Link href={siteConfig.social.facebook}>
               <BsFacebook className="h-10 w-10 hover:text-white/80 md:h-14 md:w-14" />
             </Link>
             <Link href={siteConfig.social.discord}>

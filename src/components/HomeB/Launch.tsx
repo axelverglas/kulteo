@@ -42,7 +42,7 @@ export default function Launch() {
               <path
                 d="M0.5 86.3865L60.9875 95.4686M5.80583 53.4348L152.5 40.4371M0.5 28.8249L101.387 2.31891"
                 stroke="#F4F4F4"
-                stroke-width="3"
+                strokeWidth="3"
               />
             </svg>
           </div>

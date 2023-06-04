@@ -195,30 +195,30 @@ export default function legal() {
               mise à jour.
             </Text>
             <Text>
-            Age minimum requis: L’âge minimum requis afin d’utiliser notre
+              Age minimum requis: L’âge minimum requis afin d’utiliser notre
               plateforme est de 13 ans. Toute personne ayant un âge inférieur à
               celui-ci ne pourra pas user de notre plateforme.
             </Text>
             <Text>
-            Consentement du parent ou tuteur légal: Si vous avez moins de 18
+              Consentement du parent ou tuteur légal: Si vous avez moins de 18
               ans, vous devez obtenir le consentement exprès de votre parent ou
               tuteur légal pour utiliser cette plateforme. Veuillez lire ce
               Contrat avec eux.
             </Text>
             <Text>
-            Si vous êtes le parent ou tuteur légal d&apos;un utilisateur de
+              Si vous êtes le parent ou tuteur légal d&apos;un utilisateur de
               moins de 18 ans, lorsque vous acceptez le Contrat vous
               reconnaissez qu’en autorisant votre enfant à utiliser le Service,
               vous êtes soumis aux termes du présent Contrat et êtes responsable
               des activités de votre enfant sur le Service.
             </Text>
-            
+
             <SubTitle>10. Inscription à la plateforme</SubTitle>
 
             <H3>1.1 - Condition d’inscription à la plateforme Kulteo</H3>
 
             <Text>
-            Certaines fonctionnalités ne sont disponibles que lors d’une
+              Certaines fonctionnalités ne sont disponibles que lors d’une
               inscription sur le site. Avant de pouvoir vous inscrire sur la
               Plateforme vous devez avoir lu et accepté les présentes CGU et la
               Politique de protection des données personnelles. Vous déclarez
@@ -226,10 +226,10 @@ export default function legal() {
               parent ou votre représentant légal pour l’utilisation de notre
               plateforme.
             </Text>
-            
+
             <H3>1.2 - Création d’un compte</H3>
             <Text>
-            Vous pourrez créer un compte de la manière suivante : Vous pourrez
+              Vous pourrez créer un compte de la manière suivante : Vous pourrez
               remplir manuellement sur notre site vos informations personnelles
               obligatoires pour la connexion à votre compte. Vous devrez saisir
               un email valide, ainsi qu’un mot de passe respectant les

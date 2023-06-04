@@ -59,8 +59,7 @@ export default function About() {
 function SVGIcon() {
   return (
     <svg
-      width="21"
-      height="24"
+      className="mr-4 h-5 w-5"
       viewBox="0 0 21 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +76,7 @@ function SVGIcon() {
 
 function ListItem({ text }: { text: string }) {
   return (
-    <li className="mb-6 flex gap-2">
+    <li className="mb-6 flex">
       <SVGIcon />
       {text}
     </li>
