@@ -13,7 +13,7 @@ export default function About() {
       <div className="container max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="flex flex-col justify-center">
-            <h2 className="mb-6 w-96 font-roc text-3xl text-black md:w-full md:text-4xl">
+            <h2 className="mb-6 font-roc text-3xl text-black md:w-full md:text-4xl">
               <span className="rounded-lg bg-black px-2 pt-1 text-primary">
                 {siteConfig.name}
               </span>{' '}
@@ -73,9 +73,11 @@ function SVGIcon() {
 
 function ListItem({ text }: { text: string }) {
   return (
-    <li className="mb-6 flex">
-      <SVGIcon />
-      {text}
+    <li className="mb-6 flex items-center">
+      <div className="w-5 h-5 flex-shrink-0">
+        <SVGIcon />
+      </div>
+      <span className="ml-2">{text}</span>
     </li>
   );
 }

@@ -4,12 +4,19 @@ import { useRouter } from 'next/router';
 // @ts-ignore
 var _paq = _paq || [];
 
+function generateRandomNumber() {
+  const array = new Uint32Array(1);
+  window.crypto.getRandomValues(array);
+  return array[0] / (Math.pow(2, 32) - 1);
+}
+
+
 export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
     // Générer un nombre aléatoire entre 0 et 1
-    const randomNum = Math.random();
+    const randomNum = generateRandomNumber();
     
     // Si le nombre est inférieur à 0.5, rediriger vers la page indexb (Variation B)
     if(randomNum < 0.5) {

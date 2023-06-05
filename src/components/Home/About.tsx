@@ -12,7 +12,7 @@ export default function About() {
       <div className="container max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div>
-            <h2 className="mb-6 w-96 font-roc text-3xl text-black md:w-full md:text-4xl">
+            <h2 className="mb-6 font-roc text-3xl text-black md:w-full md:text-4xl">
               Mais c&apos;est quoi{' '}
               <span className="rounded-lg bg-black px-2 pt-1 text-primary">
                 {siteConfig.name}
