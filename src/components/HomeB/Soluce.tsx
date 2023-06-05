@@ -21,7 +21,7 @@ export default function About() {
           </div>
           <div className="col-span-2 flex w-full flex-col justify-center md:w-[570px]">
             <h2 className="mb-6 font-roc text-3xl text-white md:text-4xl">
-              <span className="rounded-xl bg-primary px-2 pt-1 text-black">
+              <span className="rounded-lg bg-primary px-2 pt-1 text-black">
                 {siteConfig.name}
               </span>{' '}
               c&apos;est quoi ?

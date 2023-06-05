@@ -68,7 +68,7 @@ function Countdown({ endDate }: CountdownProps) {
 function TimeUnit({ value }: TimeUnitProps) {
   return (
     <div className="relative flex flex-col items-center">
-      <div className="absolute top-[-0.25rem] h-5 w-5 -translate-y-1/2 transform rounded-full border-2 border-primary"></div>
+      <div className="absolute top-[-0.25rem] h-5 w-5 -translate-y-1/2 transform rounded-full border-2 border-white"></div>
       <div className="z-10 mb-2 flex h-14 w-10 items-center justify-center rounded-lg bg-primary md:h-16 md:w-11">
         <p className="font-roc text-2xl text-black md:text-4xl">{value}</p>
       </div>

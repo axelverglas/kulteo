@@ -8,7 +8,7 @@ export default function Launch() {
         <div className="flex w-full items-center justify-center">
           <h2 className="w-64 text-center font-roc text-3xl md:text-4xl md:leading-[3rem]">
             La{' '}
-            <span className="rounded-xl bg-primary px-2 pb-1 pt-2 text-black">
+            <span className="rounded-lg bg-primary px-2 pb-1 pt-2 text-black">
               culture
             </span>{' '}
             à portée de <span className="text-primary">clic</span> !

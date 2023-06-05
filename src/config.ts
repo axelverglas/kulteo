@@ -1,6 +1,7 @@
 export const siteConfig = {
   name: 'Kulteo',
-  description: 'Découvrez lieux et événements culturels, explorez, rencontrez et partagez des moments uniques à portée de clic avec Kulteo, un monde de culture sans limites.',
+  description:
+    'Découvrez lieux et événements culturels, explorez, rencontrez et partagez des moments uniques à portée de clic avec Kulteo, un monde de culture sans limites.',
   url: 'https://www.kulteo.fr',
   social: {
     facebook: 'https://www.facebook.com/people/Kulteo/100092998249431/',

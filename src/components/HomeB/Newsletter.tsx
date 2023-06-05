@@ -3,6 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { toast } from 'react-hot-toast';
 import { useState } from 'react';
+import { siteConfig } from '@/config';
 
 const schema = z.object({
   email: z.string().email({
@@ -51,7 +52,7 @@ export default function NewsletterForm() {
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <h2 className="mb-6 text-center font-roc text-3xl text-white">
           Notre{' '}
-          <span className="rounded-xl bg-primary px-2 pb-1 pt-2 text-black">
+          <span className="rounded-lg bg-primary px-2 pb-1 pt-2 text-black">
             Newsletter
           </span>
         </h2>
@@ -61,46 +62,47 @@ export default function NewsletterForm() {
             Inscrivez-vous à notre newsletter !
           </p>
           <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="w-full md:w-[420px]"
-          >
-            <div className="relative">
+              onSubmit={handleSubmit(onSubmit)}
+              className="w-full md:w-[420px]"
+            >
               <input
                 type="email"
                 {...register('email')}
                 className="h-16 w-full rounded-[3rem] border-[3px] border-secondary bg-transparent px-6 text-white outline-none"
                 placeholder="Email..."
               />
+              {errors.email && (
+                <p className="mt-2 text-center text-red-500">
+                  {errors.email.message}
+                </p>
+              )}
+              <div className="mt-8 flex items-start">
+                <input
+                  type="checkbox"
+                  {...register('checkbox')}
+                  className="mt-1 border border-white bg-transparent"
+                />
+                <label className="ml-2 block w-full text-xs md:w-[405px]">
+                  En validant votre inscription, vous acceptez que{' '}
+                  {siteConfig.name} mémorise et utilise votre adresse email dans
+                  le but de vous envoyer mensuellement notre lettre
+                  d&apos;informations
+                </label>
+              </div>
+              {errors.checkbox && (
+                <p className="mt-2 text-center text-red-500">
+                  {errors.checkbox.message}
+                </p>
+              )}
+              <div className='flex items-center justify-center '>
               <button
                 type="submit"
-                className="absolute right-2 top-2 h-12 rounded-[3rem] bg-secondary px-4 font-semibold text-black hover:bg-secondary/80"
+                className="mt-8 h-12 rounded-[3rem] bg-secondary px-6 font-semibold text-black transition-all hover:bg-white"
               >
                 Envoyer
               </button>
-            </div>
-            {errors.email && (
-              <p className="mt-2 text-center text-red-500">
-                {errors.email.message}
-              </p>
-            )}
-            <div className="mt-8 flex items-start">
-              <input
-                type="checkbox"
-                {...register('checkbox')}
-                className="mt-1 border border-white bg-transparent"
-              />
-              <label className="ml-2 block w-full text-xs md:w-[405px]">
-                En validant votre inscription, vous acceptez que « mon
-                entreprise » mémorise et utilise votre adresse email dans le but
-                de vous envoyer mensuellement notre lettre d&apos;informations
-              </label>
-            </div>
-            {errors.checkbox && (
-              <p className="mt-2 text-center text-red-500">
-                {errors.checkbox.message}
-              </p>
-            )}
-          </form>
+              </div>
+            </form>
         </div>
       </div>
     </section>

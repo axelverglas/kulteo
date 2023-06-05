@@ -22,7 +22,7 @@ export default function Hero() {
 
         <Link
           href={'#about'}
-          className="inline-block rounded-xl bg-secondary px-4 pb-1 pt-1.5 text-black hover:bg-secondary/80 md:pb-3 md:pt-4"
+          className="inline-block rounded-xl bg-secondary px-4 pb-1 pt-1.5 text-black transition-all hover:bg-white md:pb-3 md:pt-4"
         >
           Explorer {siteConfig.name} !
         </Link>

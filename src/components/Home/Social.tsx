@@ -23,22 +23,22 @@ export default function Social() {
         <div className="flex flex-col items-center justify-center">
           <h2 className="w-64 text-center font-roc text-3xl leading-[2.5rem] md:w-72 md:text-4xl md:leading-[3rem]">
             Rejoignez nous dès{'  '}
-            <span className="rounded-xl bg-primary px-2 pb-1 pt-2 text-black">
+            <span className="rounded-lg bg-primary px-2 pb-1 pt-2 text-black">
               aujourd&apos;hui
             </span>
           </h2>
           <div className="mt-12 flex space-x-10">
             <Link href={siteConfig.social.facebook}>
-              <BsFacebook className="h-10 w-10 hover:text-white/80 md:h-14 md:w-14" />
+              <BsFacebook className="h-10 w-10 transition-all hover:text-primary md:h-14 md:w-14" />
             </Link>
             <Link href={siteConfig.social.discord}>
-              <BsDiscord className="h-10 w-10 hover:text-white/80 md:h-14 md:w-14" />
+              <BsDiscord className="h-10 w-10 transition-all hover:text-primary md:h-14 md:w-14" />
             </Link>
             <Link href={siteConfig.social.instagram}>
-              <BsInstagram className="h-10 w-10 hover:text-white/80 md:h-14 md:w-14" />
+              <BsInstagram className="h-10 w-10 transition-all hover:text-primary md:h-14 md:w-14" />
             </Link>
             <Link href={siteConfig.social.linkedin}>
-              <BsLinkedin className="h-10 w-10 hover:text-white/80 md:h-14 md:w-14" />
+              <BsLinkedin className="h-10 w-10 transition-all hover:text-primary md:h-14 md:w-14" />
             </Link>
           </div>
         </div>

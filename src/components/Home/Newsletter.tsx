@@ -79,29 +79,39 @@ export default function NewsletterForm() {
             <h2 className="text-center font-roc text-3xl text-white">
               Newsletter
             </h2>
-            <p className="my-5 text-center md:w-[420px]">
-              {userType === 'particulier'
-                ? 'Vous êtes un passionné de culture et notre projet vous intéresse ? Inscrivez-vous à notre newsletter !'
-                : 'Vous êtes un professionnel et notre projet vous intéresse ? Inscrivez-vous à notre newsletter !'}
+            <p className="my-5 text-center md:w-[500px]">
+              {userType === 'particulier' ? (
+                <>
+                  <span className="md:inline-block">
+                    Vous êtes un passionné de culture et notre projet vous
+                    intéresse ?
+                  </span>
+                  <span className="block md:inline">
+                    Inscrivez-vous à notre newsletter !
+                  </span>
+                </>
+              ) : (
+                <>
+                  <span className="md:inline-block">
+                    Vous êtes un professionnel et notre projet vous intéresse ?
+                  </span>
+                  <span className="block md:inline">
+                    Inscrivez-vous à notre newsletter !
+                  </span>
+                </>
+              )}
             </p>
+
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="w-full md:w-[420px]"
             >
-              <div className="relative">
-                <input
-                  type="email"
-                  {...register('email')}
-                  className="h-16 w-full rounded-[3rem] border-[3px] border-secondary bg-transparent px-6 text-white outline-none"
-                  placeholder="Email..."
-                />
-                <button
-                  type="submit"
-                  className="absolute right-2 top-2 h-12 rounded-[3rem] bg-secondary px-4 font-semibold text-black hover:bg-secondary/80"
-                >
-                  Envoyer
-                </button>
-              </div>
+              <input
+                type="email"
+                {...register('email')}
+                className="h-16 w-full rounded-[3rem] border-[3px] border-secondary bg-transparent px-6 text-white outline-none"
+                placeholder="Email..."
+              />
               {errors.email && (
                 <p className="mt-2 text-center text-red-500">
                   {errors.email.message}
@@ -125,6 +135,14 @@ export default function NewsletterForm() {
                   {errors.checkbox.message}
                 </p>
               )}
+              <div className='flex items-center justify-center '>
+              <button
+                type="submit"
+                className="mt-8 h-12 rounded-[3rem] bg-secondary px-6 font-semibold text-black transition-all hover:bg-white"
+              >
+                Envoyer
+              </button>
+              </div>
             </form>
           </div>
         </div>
