@@ -21,7 +21,7 @@ export default function Social() {
           </svg>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <h2 className="w-64 font-roc text-center text-3xl leading-[2.5rem] md:w-72 md:text-4xl md:leading-[3rem]">
+          <h2 className="w-64 text-center font-roc text-3xl leading-[2.5rem] md:w-72 md:text-4xl md:leading-[3rem]">
             Retrouvez-nous{'  '}
             <span className="mr-2 rounded-lg bg-primary px-2 pb-1 pt-2 text-black">
               également

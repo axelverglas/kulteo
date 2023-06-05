@@ -62,47 +62,47 @@ export default function NewsletterForm() {
             Inscrivez-vous à notre newsletter !
           </p>
           <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="w-full md:w-[420px]"
-            >
+            onSubmit={handleSubmit(onSubmit)}
+            className="w-full md:w-[420px]"
+          >
+            <input
+              type="email"
+              {...register('email')}
+              className="h-16 w-full rounded-[3rem] border-[3px] border-secondary bg-transparent px-6 text-white outline-none"
+              placeholder="Email..."
+            />
+            {errors.email && (
+              <p className="mt-2 text-center text-red-500">
+                {errors.email.message}
+              </p>
+            )}
+            <div className="mt-8 flex items-start">
               <input
-                type="email"
-                {...register('email')}
-                className="h-16 w-full rounded-[3rem] border-[3px] border-secondary bg-transparent px-6 text-white outline-none"
-                placeholder="Email..."
+                type="checkbox"
+                {...register('checkbox')}
+                className="mt-1 border border-white bg-transparent"
               />
-              {errors.email && (
-                <p className="mt-2 text-center text-red-500">
-                  {errors.email.message}
-                </p>
-              )}
-              <div className="mt-8 flex items-start">
-                <input
-                  type="checkbox"
-                  {...register('checkbox')}
-                  className="mt-1 border border-white bg-transparent"
-                />
-                <label className="ml-2 block w-full text-xs md:w-[405px]">
-                  En validant votre inscription, vous acceptez que{' '}
-                  {siteConfig.name} mémorise et utilise votre adresse email dans
-                  le but de vous envoyer mensuellement notre lettre
-                  d&apos;informations
-                </label>
-              </div>
-              {errors.checkbox && (
-                <p className="mt-2 text-center text-red-500">
-                  {errors.checkbox.message}
-                </p>
-              )}
-              <div className='flex items-center justify-center '>
+              <label className="ml-2 block w-full text-xs md:w-[405px]">
+                En validant votre inscription, vous acceptez que{' '}
+                {siteConfig.name} mémorise et utilise votre adresse email dans
+                le but de vous envoyer mensuellement notre lettre
+                d&apos;informations
+              </label>
+            </div>
+            {errors.checkbox && (
+              <p className="mt-2 text-center text-red-500">
+                {errors.checkbox.message}
+              </p>
+            )}
+            <div className="flex items-center justify-center ">
               <button
                 type="submit"
                 className="mt-8 h-12 rounded-[3rem] bg-secondary px-6 font-semibold text-black transition-all hover:bg-white"
               >
                 Envoyer
               </button>
-              </div>
-            </form>
+            </div>
+          </form>
         </div>
       </div>
     </section>

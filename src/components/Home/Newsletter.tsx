@@ -135,13 +135,13 @@ export default function NewsletterForm() {
                   {errors.checkbox.message}
                 </p>
               )}
-              <div className='flex items-center justify-center '>
-              <button
-                type="submit"
-                className="mt-8 h-12 rounded-[3rem] bg-secondary px-6 font-semibold text-black transition-all hover:bg-white"
-              >
-                Envoyer
-              </button>
+              <div className="flex items-center justify-center ">
+                <button
+                  type="submit"
+                  className="mt-8 h-12 rounded-[3rem] bg-secondary px-6 font-semibold text-black transition-all hover:bg-white"
+                >
+                  Envoyer
+                </button>
               </div>
             </form>
           </div>

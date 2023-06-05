@@ -12,7 +12,6 @@ export default function About() {
       <div className="container max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div>
-            <div className="flex md:block">
               <h2 className="mb-6 w-52 font-roc text-3xl text-black md:w-full md:text-4xl">
                 Mais c&apos;est quoi{' '}
                 <span className="rounded-lg bg-black px-2 pt-1 text-primary">
@@ -20,8 +19,8 @@ export default function About() {
                 </span>{' '}
                 ?
               </h2>
-              <div className="ml-4 flex h-[4.5rem] w-[4.5rem] flex-col items-start md:absolute md:right-44 md:top-14 md:h-28 md:w-28">
-                <svg
+              <div className="hidden ml-4 lg:flex flex-col items-start lg:absolute lg:right-44 lg:top-14 lg:h-28 lg:w-28">
+              <svg
                   className="h-full w-full"
                   viewBox="0 0 106 128"
                   fill="none"
@@ -33,7 +32,6 @@ export default function About() {
                     strokeWidth="3"
                   />
                 </svg>
-              </div>
             </div>
 
             <Paragraphs items={paragraphs} />
