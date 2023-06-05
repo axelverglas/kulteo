@@ -31,8 +31,9 @@ export default function Hero() {
           href="#about"
           className="absolute bottom-12 left-1/2 right-1/2 flex flex-col items-center justify-center md:bottom-6"
         >
-          <p className="mb-2">Suivant</p>
+          <p className="mb-4">Suivant</p>
           <svg
+            className="animate-moveUp"
             width="46"
             height="39"
             viewBox="0 0 46 39"

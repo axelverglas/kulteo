@@ -5,11 +5,7 @@ import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
 import { siteConfig } from '@/config';
 
-import { init } from '@socialgouv/matomo-next';
 import Head from 'next/head';
-
-const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL;
-const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID;
 
 const Indivisible = localFont({
   src: [
@@ -37,12 +33,6 @@ const RocGrotesk = localFont({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
-  useEffect(() => {
-    if (MATOMO_URL && MATOMO_SITE_ID) {
-      init({ url: MATOMO_URL, siteId: MATOMO_SITE_ID });
-    }
-  }, []);
-
   return (
     <>
       <Head>

@@ -15,10 +15,9 @@ export default function Launch() {
           </h2>
         </div>
         <div className="flex items-center justify-center gap-20">
-          <div className="hidden md:block launch-svg-left"></div>
+          <div className="launch-svg-left hidden md:block"></div>
           <Countdown endDate={endDate} />
-          <div className="hidden md:block launch-svg-right">
-          </div>
+          <div className="launch-svg-right hidden md:block"></div>
         </div>
       </div>
     </section>

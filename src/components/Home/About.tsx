@@ -12,32 +12,30 @@ export default function About() {
       <div className="container max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div>
-              <h2 className="mb-6 w-52 font-roc text-3xl text-black md:w-full md:text-4xl">
-                Mais c&apos;est quoi{' '}
-                <span className="rounded-lg bg-black px-2 pt-1 text-primary">
-                  {siteConfig.name}
-                </span>{' '}
-                ?
-              </h2>
-              <div className="hidden ml-4 lg:flex flex-col items-start lg:absolute lg:right-44 lg:top-14 lg:h-28 lg:w-28">
-              <svg
-                  className="h-full w-full"
-                  viewBox="0 0 106 128"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2.38664 100.167C90.1727 121.429 120.734 53.61 96.4355 25.6804C73.658 -0.500733 35.9618 15.1884 23.2324 33.5855C11.1222 51.0877 27.282 66.0309 39.809 51.4108C55.0537 33.6188 50.3752 12.4025 41.4792 1.66941M2.38664 100.167L29.063 83.8799M2.38664 100.167L18.7785 126.887"
-                    stroke="#111111"
-                    strokeWidth="3"
-                  />
-                </svg>
-            </div>
-
+            <h2 className="mb-6 font-roc text-3xl text-black md:w-full md:text-4xl">
+              Mais c&apos;est quoi{' '}
+              <span className="rounded-lg bg-black px-2 pt-1 text-primary">
+                {siteConfig.name}
+              </span>{' '}
+              ?
+            </h2>
             <Paragraphs items={paragraphs} />
           </div>
-          <div className="hidden items-center justify-center md:flex">
+          <div className="relative hidden items-center justify-center md:flex">
+            <svg
+              className="absolute right-0 top-[-20%] hidden h-28 w-28 md:block"
+              viewBox="0 0 106 128"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2.38664 100.167C90.1727 121.429 120.734 53.61 96.4355 25.6804C73.658 -0.500733 35.9618 15.1884 23.2324 33.5855C11.1222 51.0877 27.282 66.0309 39.809 51.4108C55.0537 33.6188 50.3752 12.4025 41.4792 1.66941M2.38664 100.167L29.063 83.8799M2.38664 100.167L18.7785 126.887"
+                stroke="#111111"
+                strokeWidth="3"
+              />
+            </svg>
             <Image
+              className="animate-swing"
               src="/img/about_img.webp"
               alt="About"
               width={300}
