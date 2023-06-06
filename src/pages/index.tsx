@@ -26,22 +26,28 @@ export default function Home() {
   const determineVersion = () => {
     let randomNumber = Math.random(); // Génère un nombre aléatoire entre 0 (inclus) et 1 (exclus)
     let selectedVersion: string;
-  
+
     if (typeof window !== 'undefined') {
       // Initialise window._paq à un tableau vide si elle n'existe pas
       window._paq = window._paq || [];
-  
+
       if (randomNumber < 0.5) {
         selectedVersion = 'A';
-        window._paq.push(['AbTesting::enter', {experiment: 'Landing-page', 'variation': 'original'}]);
+        window._paq.push([
+          'AbTesting::enter',
+          { experiment: 'Landing-page', variation: 'original' },
+        ]);
       } else {
         selectedVersion = 'B';
-        window._paq.push(['AbTesting::enter', {experiment: 'Landing-page', 'variation': 'landingb'}]);
+        window._paq.push([
+          'AbTesting::enter',
+          { experiment: 'Landing-page', variation: 'landingb' },
+        ]);
       }
-      
+
       setVersion(selectedVersion);
     }
-  }
+  };
 
   useEffect(() => {
     determineVersion();

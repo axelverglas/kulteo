@@ -74,7 +74,7 @@ function SVGIcon() {
 function ListItem({ text }: { text: string }) {
   return (
     <li className="mb-6 flex items-center">
-      <div className="w-5 h-5 flex-shrink-0">
+      <div className="h-5 w-5 flex-shrink-0">
         <SVGIcon />
       </div>
       <span className="ml-2">{text}</span>

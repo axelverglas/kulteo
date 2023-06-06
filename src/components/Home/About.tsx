@@ -13,10 +13,10 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div>
             <h2 className="mb-6 font-roc text-3xl text-black md:w-full md:text-4xl">
-              Mais c&apos;est quoi{' '}
-              <span className="rounded-lg bg-black px-2 pt-1 text-primary">
+              Mais c&apos;est quoi
+              <span className="rounded-lg bg-black px-2 pt-1 text-primary mx-1">
                 {siteConfig.name}
-              </span>{' '}
+              </span>
               ?
             </h2>
             <Paragraphs items={paragraphs} />
