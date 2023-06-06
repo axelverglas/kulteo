@@ -3,8 +3,13 @@ import type { AppProps } from 'next/app';
 import localFont from 'next/font/local';
 import { Toaster } from 'react-hot-toast';
 import { siteConfig } from '@/config';
-
 import Head from 'next/head';
+import TagManager from 'gtm-for-react'
+import { useEffect } from 'react';
+
+const tagManagerArgs = {
+  gtmId: 'GTM-T5LNRJX'
+}
 
 const Indivisible = localFont({
   src: [
@@ -32,6 +37,9 @@ const RocGrotesk = localFont({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    TagManager.initialize(tagManagerArgs)
+  }, [])
   return (
     <>
       <Head>
