@@ -33,3 +33,19 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
 }
+
+.about-svg {
+  width: 106px;
+  height: 128px;
+  background-image: url('/img/about.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.social-svg {
+  width: 131px;
+  height: 161px;
+  background-image: url('/img/social.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+}

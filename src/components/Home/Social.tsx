@@ -6,18 +6,7 @@ export default function Social() {
   return (
     <section className="relative pb-24 pt-12 md:pb-32 md:pt-16">
       <div className="container relative max-w-xl">
-        <svg
-          className="absolute left-[-10%] top-[10%] hidden h-28 w-28 animate-swingRight md:block"
-          viewBox="0 0 131 161"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M128.829 126.977C17.63 150.564 -18.4343 64.1226 13.1211 29.8543C42.701 -2.26866 89.5772 18.8337 104.945 42.4427C119.566 64.9034 98.7081 83.124 83.4616 64.275C64.9074 41.3366 71.5407 14.808 83.1113 1.62311M128.829 126.977L95.8389 105.52M128.829 126.977L107.265 160.009"
-            stroke="#F4F4F4"
-            strokeWidth="3"
-          />
-        </svg>
+        <div className="social-svg absolute left-[-20%] top-[10%] hidden animate-swingRight md:block"></div>
         <div className="flex flex-col items-center justify-center">
           <h2 className="w-64 text-center font-roc text-3xl leading-[2.5rem] md:w-72 md:text-4xl md:leading-[3rem]">
             Rejoignez nous dès{'  '}

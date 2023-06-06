@@ -27,18 +27,7 @@ export default function About() {
             </ul>
           </div>
           <div className="relative hidden items-center justify-center md:flex">
-            <svg
-              className="absolute right-0 top-[-20%] hidden h-28 w-28 md:block"
-              viewBox="0 0 106 128"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M2.38664 100.167C90.1727 121.429 120.734 53.61 96.4355 25.6804C73.658 -0.500733 35.9618 15.1884 23.2324 33.5855C11.1222 51.0877 27.282 66.0309 39.809 51.4108C55.0537 33.6188 50.3752 12.4025 41.4792 1.66941M2.38664 100.167L29.063 83.8799M2.38664 100.167L18.7785 126.887"
-                stroke="#111111"
-                strokeWidth="3"
-              />
-            </svg>
+            <div className="about-svg absolute right-0 top-[-20%] hidden md:block"></div>
             <Image
               className="animate-swing"
               src="/img/about_img.webp"
