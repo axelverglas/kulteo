@@ -31,7 +31,7 @@ export default async function handler(
     const data = await response.json();
 
     if (!response.ok) {
-      return res.status(response.status).json(data);
+      return res.status(response.status).json({ error: data.message });
     }
 
     return res.status(200).json(data);

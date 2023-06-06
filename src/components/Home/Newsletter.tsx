@@ -37,11 +37,12 @@ export default function NewsletterForm() {
       },
     });
 
+    const responseData = await res.json();  // Add this line
+
     if (res.ok) {
-      await res.json();
       toast.success('Merci pour votre inscription !');
     } else {
-      toast.error('Une erreur est survenue');
+      toast.error(responseData.error || 'Une erreur est survenue');  // Change this line
     }
   };
 
