@@ -30,6 +30,7 @@ export default function Hero() {
         </p>
 
         <Link
+          onClick={handleScroll}
           href={'#about'}
           className="inline-block rounded-xl bg-secondary px-4 pb-2 pt-2 text-black transition-all hover:bg-white md:pb-3 md:pt-4"
         >

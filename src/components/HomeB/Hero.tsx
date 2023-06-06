@@ -1,6 +1,15 @@
 import { siteConfig } from '@/config';
 import Link from 'next/link';
 
+function handleScroll(event: React.MouseEvent<HTMLAnchorElement>) {
+  event.preventDefault();
+
+  const targetElement = document.querySelector('#about');
+  if (targetElement) {
+    targetElement.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
 export default function Hero() {
   return (
     <section className="hero relative flex h-screen min-h-screen flex-col justify-center">
@@ -19,6 +28,7 @@ export default function Hero() {
         </p>
 
         <Link
+          onClick={handleScroll}
           href={'#about'}
           className="inline-block rounded-xl bg-secondary px-4 pb-1 pt-1.5 text-black transition-all hover:bg-white md:pb-3 md:pt-4"
         >
@@ -26,6 +36,7 @@ export default function Hero() {
         </Link>
 
         <Link
+          onClick={handleScroll}
           href="#about"
           className="absolute bottom-12 left-1/2 right-1/2 flex flex-col items-center justify-center md:bottom-6"
         >
