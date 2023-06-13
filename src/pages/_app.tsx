@@ -54,14 +54,14 @@ export default function App({ Component, pageProps }: AppProps) {
         {/* Open Graph */}
         <meta property="og:title" content={siteConfig.name} />
         <meta property="og:description" content={siteConfig.description} />
-        <meta property="og:image" content="../../public/img/logo.svg" />
+        <meta property="og:image" content="/img/logo.svg" />
         <meta property="og:url" content={siteConfig.url} />
         <meta property="og:type" content="website" />
 
         {/* Twitter Card */}
         <meta name="twitter:title" content={siteConfig.name} />
         <meta name="twitter:description" content={siteConfig.description} />
-        <meta name="twitter:image" content="../../public/img/logo.svg" />
+        <meta name="twitter:image" content="/img/logo.svg" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <style jsx global>
