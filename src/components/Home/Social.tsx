@@ -15,16 +15,16 @@ export default function Social() {
             </span>
           </h2>
           <div className="mt-12 flex space-x-10">
-            <Link href={siteConfig.social.facebook}>
+            <Link href={siteConfig.social.facebook} target='_blank'>
               <BsFacebook className="h-10 w-10 transition-all hover:text-primary md:h-14 md:w-14" />
             </Link>
-            <Link href={siteConfig.social.discord}>
+            <Link href={siteConfig.social.discord} target='_blank'>
               <BsDiscord className="h-10 w-10 transition-all hover:text-primary md:h-14 md:w-14" />
             </Link>
-            <Link href={siteConfig.social.instagram}>
+            <Link href={siteConfig.social.instagram} target='_blank'>
               <BsInstagram className="h-10 w-10 transition-all hover:text-primary md:h-14 md:w-14" />
             </Link>
-            <Link href={siteConfig.social.linkedin}>
+            <Link href={siteConfig.social.linkedin} target='_blank'>
               <BsLinkedin className="h-10 w-10 transition-all hover:text-primary md:h-14 md:w-14" />
             </Link>
           </div>
