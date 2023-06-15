@@ -24,7 +24,7 @@ export default function About() {
               <span className="rounded-lg bg-primary px-2 pt-1 text-black">
                 {siteConfig.name}
               </span>{' '}
-              c&apos;est quoi ?
+              à la solution
             </h2>
 
             <Paragraphs items={paragraphs} />
