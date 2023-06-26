@@ -7,6 +7,9 @@ import Head from 'next/head';
 import TagManager from 'gtm-for-react';
 import { useEffect } from 'react';
 import { ThemeProvider } from 'next-themes';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 const tagManagerArgs = {
   gtmId: 'GTM-T5LNRJX',
@@ -84,8 +87,10 @@ export default function App({ Component, pageProps }: AppProps) {
         `}
       </style>
       <ThemeProvider attribute="class">
-        <Toaster />
-        <Component {...pageProps} />
+        <QueryClientProvider client={queryClient}>
+          <Toaster />
+          <Component {...pageProps} />
+        </QueryClientProvider>
       </ThemeProvider>
     </>
   );

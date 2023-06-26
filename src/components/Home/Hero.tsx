@@ -1,7 +1,7 @@
 import Container from '@/components/Container';
 import Heading from '@/components/Heading';
 import Section from '@/components/Section';
-import ListItem from '@/components/ListItem';
+import ListItem, { items } from '@/components/ListItem';
 
 export default function Hero() {
   return (
@@ -19,31 +19,15 @@ export default function Hero() {
             à tous
           </Heading>
           <ul className="mt-8 w-96">
-            <ListItem>
-              Accédez à un{' '}
-              <span className="font-semibold text-secondarylight dark:text-primary">
-                annuaire
-              </span>{' '}
-              exhaustif des lieux et événements culturels
-            </ListItem>
-            <ListItem>
-              Profitez de visites guidées en live et en{' '}
-              <span className="font-semibold text-secondarylight dark:text-primary">
-                rediffusion
-              </span>
-              , ainsi que de{' '}
-              <span className="font-semibold text-secondarylight dark:text-primary">
-                podcasts
-              </span>{' '}
-              animés par des passionnés
-            </ListItem>
-            <ListItem>
-              Répertoriez les lieux déjà visités et planifiez vos prochaines
-              sorties en organisant des{' '}
-              <span className="font-semibold text-secondarylight dark:text-primary">
-                collections
-              </span>
-            </ListItem>
+            {items.map((item, index) => (
+              <ListItem key={index}>
+                {item.text}
+                <span className="font-semibold text-secondarylight dark:text-primary">
+                  {item.emphasis}
+                </span>
+                {item.additionalText}
+              </ListItem>
+            ))}
           </ul>
         </div>
       </Container>

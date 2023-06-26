@@ -11,8 +11,20 @@ html {
     @apply flex min-h-screen flex-col bg-whitesmoke text-night dark:bg-night dark:text-whitesmoke;
   }
 
-  .hero {
-    background-image: url('../../public/img/hero_img.webp');
+  .hero-light {
+    background: linear-gradient(
+        0deg,
+        rgba(244, 244, 244, 0.5) 0%,
+        rgba(244, 244, 244, 0.5) 100%
+      ),
+      url('../../public/img/hero_img.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero-dark {
+    background: url('../../public/img/hero_img.webp');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

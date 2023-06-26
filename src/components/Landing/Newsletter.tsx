@@ -78,7 +78,7 @@ export default function NewsletterForm() {
               </button>
             </div>
           </div>
-          <div className="flex flex-col items-center justify-center rounded-b-xl border-[2px] border-secondarylight p-7 dark:border-primary md:py-12 border-t-0">
+          <div className="flex flex-col items-center justify-center rounded-b-xl border-[2px] border-t-0 border-secondarylight p-7 dark:border-primary md:py-12">
             <h2 className="text-center font-roc text-3xl font-bold">
               Newsletter
             </h2>

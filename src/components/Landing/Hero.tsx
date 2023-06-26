@@ -1,4 +1,3 @@
-import { siteConfig } from '@/config';
 import Link from 'next/link';
 import Button from '../Button';
 

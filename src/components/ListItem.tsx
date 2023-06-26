@@ -1,5 +1,23 @@
 import { HomeIcon } from './Icons';
 
+export const items = [
+  {
+    text: 'Accédez à un ',
+    emphasis: 'annuaire',
+    additionalText:
+      ' étincelant, dévoilant des joyaux culturels et des événements qui vous feront vibrer',
+  },
+  {
+    text: 'Succombez à des visites en live et en ',
+    emphasis: 'rediffusion',
+    additionalText: ' puis émerveillez-vous avec des podcasts passionnants',
+  },
+  {
+    text: 'Enregistrez les lieux déjà visités et orchestrez vos futures activités culturelles en organisant des ',
+    emphasis: 'collections',
+  },
+];
+
 export default function ListItem({ children }: { children: React.ReactNode }) {
   return (
     <li className="mb-4 flex">

@@ -17,7 +17,12 @@ const styleConfig: Record<HeadingLevel, string> = {
   h4: 'text-lg md:text-2xl font-roc',
 };
 
-export default function Heading({ level, children, className, title }: HeadingProps) {
+export default function Heading({
+  level,
+  children,
+  className,
+  title,
+}: HeadingProps) {
   const HeadingTag = level;
 
   return (

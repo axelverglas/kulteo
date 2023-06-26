@@ -1,6 +1,6 @@
 import Hero from '@/components/Home/Hero';
 import Layout from '@/components/Layout';
-import { GetServerSideProps, GetStaticProps } from 'next';
+import { GetStaticProps } from 'next';
 import { CulturalPlace, Event, Type } from '../../typings';
 import { fetchAllCulturalPlaces } from '@/utils/fetchCulturalPlaces';
 import Card from '@/components/Card';
@@ -45,27 +45,27 @@ export default function Dashboard({ culturalPlace, events, types }: Props) {
   return (
     <Layout>
       <Hero />
-      <div className="overflow-x-auto">
-    <div className="inline-flex space-x-4">
-      <FilterButton
-        active={filter === ''}
-        onClick={() => handleFilterChange('')}
-      >
-        Tous
-      </FilterButton>
-      {types.map(type => (
-        <FilterButton
-          key={type._id}
-          active={filter === type.title}
-          onClick={() => handleFilterChange(type.title)}
-        >
-          {type.title}
-        </FilterButton>
-      ))}
-    </div>
-  </div>
       <Section>
         <Container>
+          <div className="overflow-x-auto">
+            <div className="inline-flex space-x-4">
+              <FilterButton
+                active={filter === ''}
+                onClick={() => handleFilterChange('')}
+              >
+                Tous
+              </FilterButton>
+              {types.map(type => (
+                <FilterButton
+                  key={type._id}
+                  active={filter === type.title}
+                  onClick={() => handleFilterChange(type.title)}
+                >
+                  {type.title}
+                </FilterButton>
+              ))}
+            </div>
+          </div>
           <div className="flex flex-col gap-y-14">
             <div className="flex items-center gap-x-6">
               <div className="flex items-center gap-x-6">

@@ -48,7 +48,9 @@ export default function Card({
         <div className="flex flex-col gap-y-4">
           <div className="flex items-center justify-between">
             <Link href={link}>
-              <Heading title={title} level="h3">{title}</Heading>
+              <Heading title={title} level="h3">
+                {title}
+              </Heading>
             </Link>
             <BookMarkIcon className="h-6 w-6 stroke-night dark:stroke-white" />
           </div>
