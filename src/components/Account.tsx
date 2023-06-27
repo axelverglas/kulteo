@@ -42,16 +42,27 @@ export default function UserMenu() {
         </Listbox.Button>
         <Listbox.Options
           className={clsx(
-            'absolute right-0 top-full z-50 w-44 overflow-hidden rounded-lg border bg-slate-50 p-1 text-sm font-semibold text-night shadow-lg dark:border-jetdark dark:bg-black dark:text-whitesmoke',
+            'absolute right-0 top-full z-50 w-52 overflow-hidden rounded-lg border bg-slate-50 p-4 text-sm font-semibold text-night shadow-lg dark:border-jetdark dark:bg-black dark:text-whitesmoke',
             'mt-4'
           )}
         >
+          <Listbox.Option
+            value="username"
+            className="flex items-center rounded-lg px-2 py-1 mb-2 last-of-type:mb-0"
+          >
+            <Image
+              src={session?.user?.image || '/img/default-avatar.webp'}
+              alt="Avatar"
+              className="rounded-full"
+              height={42}
+              width={42}
+            />
+            <span className="ml-3">{session?.user?.name}</span>
+          </Listbox.Option>
           {options.map(option => (
-            <Listbox.Option key={option.value} value={option.value}>
-              <li className="flex cursor-pointer items-center rounded-lg px-2 py-1">
+            <Listbox.Option key={option.value} value={option.value} className="flex cursor-pointer items-center rounded-lg px-2 py-1 mb-2 last-of-type:mb-0">
                 {option.icon && <option.icon className="mr-2 h-5 w-5" />}
                 {option.label}
-              </li>
             </Listbox.Option>
           ))}
         </Listbox.Options>

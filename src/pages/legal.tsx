@@ -18,7 +18,11 @@ export default function legal() {
   return (
     <>
       <Head>
-        <title>{siteConfig.name}</title>
+        <title>Mentions légales - Kulteo</title>
+        <meta
+          name="description"
+          content="Consultez nos mentions légales pour en savoir plus sur nos politiques et nos engagements."
+        />
       </Head>
       <DefaultLayout>
         <section className="py-12 pt-24 md:py-24 md:pt-48">

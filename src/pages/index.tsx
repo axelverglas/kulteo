@@ -15,6 +15,10 @@ export default function Home() {
     <>
       <Head>
         <title>{title}</title>
+        <meta
+          name="description"
+          content="Découvrez lieux et événements culturels, explorez, rencontrez et partagez des moments uniques à portée de clic avec Kulteo, un monde de culture sans limites."
+        />
       </Head>
       <DefaultLayout>
         <Hero />

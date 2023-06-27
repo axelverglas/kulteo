@@ -8,6 +8,7 @@ import Button from '@/components/Button';
 import Section from '@/components/Section';
 import SocialLinks from '@/components/Social';
 import { toast } from 'react-hot-toast';
+import Head from 'next/head';
 
 const schema = z.object({
   email: z.string().email('Votre adresse mail est invalide'),
@@ -48,6 +49,14 @@ export default function ContactForm() {
   };
 
   return (
+    <>
+    <Head>
+      <title>Contactez-nous - Kulteo</title>
+      <meta
+        name="description"
+        content="Besoin d'aide, de suggestions ou de partenariats ? Contactez-nous et notre équipe sera ravie de vous assister."
+      />
+    </Head>
     <Layout>
       <Section>
         <div className="container">
@@ -88,5 +97,6 @@ export default function ContactForm() {
         </div>
       </Section>
     </Layout>
+    </>
   );
 }

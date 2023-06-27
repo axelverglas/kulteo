@@ -17,6 +17,7 @@ import { fetchAllStreamVideos } from '@/utils/fetchVideos';
 import Link from 'next/link';
 import VideoCard from '@/components/VideoCard';
 import { useSession } from 'next-auth/react';
+import Head from 'next/head';
 
 interface Props {
   culturalPlace: CulturalPlace[];
@@ -65,6 +66,14 @@ export default function Dashboard({
     );
   };
   return (
+    <>
+    <Head>
+      <title>Explorez et découvrez la culture à Paris avec Kulteo</title>
+      <meta
+        name="description"
+        content="Découvrez une plateforme culturelle unique offrant une variété de lieux et d'événements culturels à Paris."
+      />
+    </Head>
     <Layout>
       {!session && <Hero />}
       <Section>
@@ -222,6 +231,7 @@ export default function Dashboard({
         </Container>
       </Section>
     </Layout>
+    </>
   );
 }
 

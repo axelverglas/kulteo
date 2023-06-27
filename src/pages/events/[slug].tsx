@@ -15,7 +15,6 @@ import { urlFor } from '@/sanity';
 import Heading from '@/components/Heading';
 import Infos from '@/components/Infos';
 import Accordion from '@/components/Accordion';
-import { GrMapLocation } from 'react-icons/gr';
 import { AccordionItem } from '@/types/Index';
 import { MapIcon, OpeningHoursIcon, PriceIcon } from '@/components/Icons';
 
