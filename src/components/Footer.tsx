@@ -3,6 +3,15 @@ import Logo from './Logo';
 import SocialLinks from './Social';
 
 export default function Footer() {
+  const footerLinks = [
+    { path: '/', label: 'Accueil' },
+    { path: '/about', label: 'À propos' },
+    { path: '/contact', label: 'Contact' },
+    { path: '/legal', label: 'Mentions légales' },
+    { path: '/link5', label: 'Lien 5' },
+    { path: '/link6', label: 'Lien 6' },
+  ];
+
   return (
     <footer className="z-50 border-t border-grayishblue bg-slate-50 py-8 dark:border-jetdark dark:bg-black">
       <div className="container max-w-7xl">
@@ -12,24 +21,11 @@ export default function Footer() {
           </div>
           <div className="mb-8 flex justify-center md:justify-normal">
             <ul className="grid grid-cols-1 grid-rows-3 gap-2 text-center md:w-72 md:grid-cols-2 md:gap-4 md:text-left">
-              <li>
-                <Link href={'/'}>Accueil</Link>
-              </li>
-              <li>
-                <Link href={'/about'}>À propos</Link>
-              </li>
-              <li>
-                <Link href={'/contact'}>Contact</Link>
-              </li>
-              <li>
-                <Link href={'/legal'}>Mentions légales</Link>
-              </li>
-              <li>
-                <Link href={'/link5'}>Lien 5</Link>
-              </li>
-              <li>
-                <Link href={'/link6'}>Lien 6</Link>
-              </li>
+              {footerLinks.map(link => (
+                <li key={link.path}>
+                  <Link href={link.path}>{link.label}</Link>
+                </li>
+              ))}
             </ul>
           </div>
           <div className="mb-8 flex justify-center md:mb-0 md:justify-normal">
@@ -37,7 +33,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-[0.5px] border-black dark:border-whitesmoke"></div>
-        <div className="mt-8 flex items-center justify-center gap-2 dark:text-whitesmoke">
+        <div className="mt-8 flex items-center justify-center gap-2 text-xs dark:text-whitesmoke md:text-base">
           <p>© Copyright 2023 Kulteo</p>
           <span>|</span>
           <Link href={'/legal'}>Mentions légales</Link>

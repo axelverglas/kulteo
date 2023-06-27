@@ -13,7 +13,7 @@ import {
 import { getVideosForPlace } from '@/utils/fetchVideos';
 import { CulturalPlace, Video } from '../../../../typings';
 import Link from 'next/link';
-import { HiOutlineChevronLeft } from 'react-icons/hi';
+import { ArrowLeftIcon } from '@/components/Icons';
 
 type Props = {
   culturalPlace: CulturalPlace;
@@ -31,11 +31,11 @@ export default function Videos({ videos, culturalPlace, videoType }: Props) {
       <Layout>
         <Section>
           <Container>
-            <div className="flex gap-x-3">
+            <div className="mb-6 flex items-center gap-x-3">
               <Link href={`/places/${culturalPlace.slug.current}`}>
-                <HiOutlineChevronLeft className="text-4xl" />
+                <ArrowLeftIcon className="h-6 w-6 stroke-night dark:stroke-white" />
               </Link>
-              <Heading level="h2" className="mb-6">
+              <Heading level="h2">
                 {videoType === 'stream'
                   ? `Rediffusion de live`
                   : `Ressource vidéos`}
@@ -45,7 +45,7 @@ export default function Videos({ videos, culturalPlace, videoType }: Props) {
               {videos.length} résultat{videos.length > 1 ? 's' : ''}
             </p>
 
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-20">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-x-20 md:gap-y-10">
               {videos.map(video => (
                 <VideoCard
                   key={video._id}

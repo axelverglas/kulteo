@@ -1,8 +1,12 @@
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import useOnClickOutside from '@/hooks/useOnClickOutside';
-import { FaBars, FaCalculator } from 'react-icons/fa';
-import { CloseIcon, ContactIcon, MuseumsIcon } from '@/components/Icons';
+import {
+  CloseIcon,
+  ContactIcon,
+  MenuIcon,
+  MuseumsIcon,
+} from '@/components/Icons';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 
@@ -39,7 +43,7 @@ function NavigationItem({
           {item.icon && (
             <item.icon
               className={clsx(
-                'mr-4 h-6 w-6',
+                'mr-4 h-7 w-7',
                 isCurrent
                   ? 'stroke-secondarylight dark:stroke-primary'
                   : ' stroke-night dark:stroke-whitesmoke'
@@ -92,7 +96,7 @@ export default function Sidebar({
                   className="m-0 hidden h-24 items-center justify-center p-2 md:flex"
                   onClick={handleButtonClick}
                 >
-                  <FaBars className="h-6 w-6 hover:text-primary  dark:text-whitesmoke" />
+                  <MenuIcon className="h-7 w-7 stroke-night hover:stroke-secondarylight dark:stroke-whitesmoke dark:hover:stroke-primary" />
                 </button>
                 <ul className="flex flex-col gap-2 overflow-hidden">
                   {navigation.map(item => (

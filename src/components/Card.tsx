@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Heading from './Heading';
 import { BookMarkIcon, LocationIcon } from './Icons';
-import { limitTitleWords } from '@/utils/limitTitleWords';
+import { limitTitleLength } from '@/utils/limitTitleWords';
 
 interface CardProps {
   title: string;
@@ -26,7 +26,7 @@ export default function Card({
   link,
 }: CardProps) {
   const shortDescription = shortenDescription(description, 20);
-  title = limitTitleWords(title, 3);
+  title = limitTitleLength(title, 20);
   return (
     <article className="flex w-full flex-col gap-y-6 rounded-xl border border-grayishblue bg-slate-50 p-4 shadow-light dark:border-jetdark dark:bg-black dark:shadow-night">
       <div className="relative">

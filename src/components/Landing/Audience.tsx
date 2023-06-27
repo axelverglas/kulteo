@@ -1,29 +1,30 @@
-import Image from 'next/image';
+import Video from '../Video';
 import ListItem from '../ListItem';
 import { siteConfig } from '@/config';
+import Link from 'next/link';
+import { HiArrowRight } from 'react-icons/hi';
 
 export default function Solution() {
   return (
     <section className="bg-slate-50 py-12 dark:bg-black md:py-24">
       <div className="container max-w-7xl">
-        <div className="grid grid-cols-1 items-center md:grid-cols-2">
-          <div className="relative hidden items-center justify-center md:flex">
-            <Image
-              className="animate-swing"
-              src="/img/about_img.webp"
-              alt="About"
-              width={300}
-              height={300}
+        <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-16">
+          <div>
+            <Video
+              videoUrl="https://www.youtube.com/watch?v=RSSXt0h3CYo"
+              width="100%"
+              height="277px"
             />
           </div>
           <div>
-            <h2 className="font bold mb-10 font-roc text-3xl md:text-4xl">
+            <h2 className="mb-10 font-roc text-3xl font-bold md:text-4xl">
               À qui s&apos;adresse
               <span className="mx-1 rounded-lg bg-secondarylight px-2 pt-1 text-white dark:bg-primary dark:text-night">
                 {siteConfig.name}
               </span>
+              ?
             </h2>
-            <ul className="mt-8">
+            <ul className="my-8">
               <ListItem>
                 Vous êtes privés d&apos;accès à la culture dans votre contrée ?
               </ListItem>
@@ -36,6 +37,13 @@ export default function Solution() {
                 budget ?
               </ListItem>
             </ul>
+            <Link
+              href="/home"
+              className="flex items-center gap-x-2 font-medium"
+            >
+              <HiArrowRight className="text-2xl" />
+              Kulteo répond à vos besoins
+            </Link>
           </div>
         </div>
       </div>

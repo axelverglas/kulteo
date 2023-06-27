@@ -6,7 +6,7 @@ interface AccordionProps {
   items: AccordionItem[];
 }
 
-export const Accordion: FC<AccordionProps> = ({ items }) => {
+export default function Accordion({ items }: AccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
@@ -31,6 +31,4 @@ export const Accordion: FC<AccordionProps> = ({ items }) => {
       </div>
     </div>
   );
-};
-
-export default Accordion;
+}

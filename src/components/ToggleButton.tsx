@@ -13,7 +13,7 @@ export default function ToggleButton(props: ToggleButtonProps) {
     <button
       {...buttonProps}
       className={clsx(
-        'w-40 cursor-pointer rounded-full py-2 outline-none',
+        'w-32 cursor-pointer rounded-full py-2 outline-none md:w-40',
         variant === activeVariant
           ? 'bg-night text-whitesmoke dark:bg-primary dark:text-night'
           : 'border border-grayishblue  bg-slate-50 text-night dark:border-jetdark dark:bg-night dark:text-white'

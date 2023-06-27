@@ -53,5 +53,19 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function({ addUtilities }) {
+      const newUtilities = {
+        '.hide-scrollbar': {
+          'scrollbar-width': 'none', /* Firefox */
+          '-ms-overflow-style': 'none',  /* IE 10+ */
+          '&::-webkit-scrollbar': {
+            width: '0px',
+            background: 'transparent', /* Chrome/Safari/Webkit */
+          },
+        },
+      }
+      addUtilities(newUtilities)
+    }
+  ],
 };

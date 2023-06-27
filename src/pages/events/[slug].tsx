@@ -15,11 +15,9 @@ import { urlFor } from '@/sanity';
 import Heading from '@/components/Heading';
 import Infos from '@/components/Infos';
 import Accordion from '@/components/Accordion';
-import { FaRegClock } from 'react-icons/fa';
 import { GrMapLocation } from 'react-icons/gr';
-import { AiOutlineEuroCircle } from 'react-icons/ai';
-import { HiOutlinePhone } from 'react-icons/hi';
 import { AccordionItem } from '@/types/Index';
+import { MapIcon, OpeningHoursIcon, PriceIcon } from '@/components/Icons';
 
 type Props = {
   event: Event;
@@ -30,14 +28,31 @@ type Props = {
 export default function Single({ event, samePlaceEvents, otherEvents }: Props) {
   const accordionItems: AccordionItem[] = [
     {
-      icon: FaRegClock,
+      icon: OpeningHoursIcon,
       title: 'Horaires',
-      content: event.openingHours || null,
+      content: event.openingHours ? (
+        <ul>
+          {event.openingHours.map((hour, index) => (
+            <li key={index}>{hour}</li>
+          ))}
+        </ul>
+      ) : null,
     },
     {
-      icon: GrMapLocation,
+      icon: MapIcon,
       title: 'Adresse',
       content: event.address || null,
+    },
+    {
+      icon: PriceIcon,
+      title: 'Tarif',
+      content: event.price ? (
+        <ul>
+          {event.price.map((price, index) => (
+            <li key={index}>{price}</li>
+          ))}
+        </ul>
+      ) : null,
     },
   ];
   return (
@@ -52,6 +67,7 @@ export default function Single({ event, samePlaceEvents, otherEvents }: Props) {
               <div>
                 <Infos
                   title={event.name}
+                  subtitle={event.culturalPlace.name}
                   description={event.description}
                   website={event.website}
                 />
@@ -71,7 +87,7 @@ export default function Single({ event, samePlaceEvents, otherEvents }: Props) {
                 <Heading level="h2" className="mb-6">
                   Autres évènements organisés par {event.culturalPlace.name}
                 </Heading>
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-20">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-x-20 md:gap-y-10">
                   {samePlaceEvents.map(event => (
                     <Card
                       key={event._id}
@@ -87,12 +103,12 @@ export default function Single({ event, samePlaceEvents, otherEvents }: Props) {
               </div>
             )}
             {otherEvents.length > 0 && (
-              <div>
+              <div className="mt-10">
                 <Heading level="h2" className="mb-6">
                   Autres évènements
                 </Heading>
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-20">
-                  {otherEvents.map(event => (
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-x-20 md:gap-y-10">
+                  {otherEvents.slice(0, 3).map(event => (
                     <Card
                       key={event._id}
                       title={event.name}

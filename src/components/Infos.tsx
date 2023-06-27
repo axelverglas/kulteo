@@ -9,12 +9,18 @@ import MoreText from '@/components/MoreText';
 
 interface InfosProps {
   title: string;
+  subtitle?: string;
   description: string;
   website?: string;
   target?: string;
 }
 
-export default function Infos({ title, description, website }: InfosProps) {
+export default function Infos({
+  title,
+  description,
+  website,
+  subtitle,
+}: InfosProps) {
   const router = useRouter();
   const handleGoBack = () => {
     router.back();
@@ -36,6 +42,14 @@ export default function Infos({ title, description, website }: InfosProps) {
       </div>
 
       <div>
+        {subtitle && (
+          <Heading
+          level="h3"
+          className="mb-6 font-medium text-secondarylight dark:text-primary"
+        >
+          {subtitle}
+        </Heading>
+        )}
         <MoreText text={description} />
       </div>
       {website && (

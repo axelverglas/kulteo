@@ -21,7 +21,7 @@ export default function AccordionItemComponent({
         <div className="flex cursor-pointer items-center gap-x-3">
           {item.icon && (
             <item.icon
-              className={`text-xl text-secondarylight dark:text-primary [&>*:first-child]:stroke-secondarylight [&>*:first-child]:dark:stroke-primary  ${
+              className={`h-5 w-5 stroke-secondarylight dark:stroke-primary  ${
                 isOpen ? 'rotate-[-90] transform' : ''
               }`}
             />

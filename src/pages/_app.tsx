@@ -8,6 +8,7 @@ import TagManager from 'gtm-for-react';
 import { useEffect } from 'react';
 import { ThemeProvider } from 'next-themes';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { SessionProvider } from 'next-auth/react';
 
 const queryClient = new QueryClient();
 
@@ -50,7 +51,10 @@ const RocGrotesk = localFont({
   ],
 });
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
   useEffect(() => {
     TagManager.initialize(tagManagerArgs);
   }, []);
@@ -88,8 +92,10 @@ export default function App({ Component, pageProps }: AppProps) {
       </style>
       <ThemeProvider attribute="class">
         <QueryClientProvider client={queryClient}>
-          <Toaster />
-          <Component {...pageProps} />
+          <SessionProvider session={session}>
+            <Toaster />
+            <Component {...pageProps} />
+          </SessionProvider>
         </QueryClientProvider>
       </ThemeProvider>
     </>

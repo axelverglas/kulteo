@@ -3,10 +3,6 @@ import Layout from '@/components/Layout';
 import Container from '@/components/Container';
 import Section from '@/components/Section';
 import Accordion from '@/components/Accordion';
-import { FaRegClock } from 'react-icons/fa';
-import { GrMapLocation } from 'react-icons/gr';
-import { AiOutlineEuroCircle } from 'react-icons/ai';
-import { HiOutlinePhone } from 'react-icons/hi';
 import Infos from '@/components/Infos';
 import { AccordionItem } from '@/types/Index';
 import { GetStaticPaths, GetStaticProps } from 'next';
@@ -23,8 +19,8 @@ import Heading from '@/components/Heading';
 import ToggleButton from '@/components/ToggleButton';
 import Link from 'next/link';
 import { useState } from 'react';
-
 import Card from '@/components/Card';
+import { OpeningHoursIcon, MapIcon, PriceIcon, ContactIcon } from '@/components/Icons';
 
 type Props = {
   culturalPlace: CulturalPlace;
@@ -35,7 +31,7 @@ type Props = {
 export default function Single({ culturalPlace, videos, events }: Props) {
   const accordionItems: AccordionItem[] = [
     {
-      icon: FaRegClock,
+      icon: OpeningHoursIcon,
       title: 'Horaires',
       content: culturalPlace.openingHours ? (
         <ul>
@@ -46,17 +42,17 @@ export default function Single({ culturalPlace, videos, events }: Props) {
       ) : null,
     },
     {
-      icon: GrMapLocation,
+      icon: MapIcon,
       title: 'Adresse',
       content: culturalPlace.address || null,
     },
     {
-      icon: AiOutlineEuroCircle,
+      icon: PriceIcon,
       title: 'Tarif',
       content: culturalPlace.price || null,
     },
     {
-      icon: HiOutlinePhone,
+      icon: ContactIcon,
       title: 'Numéro de téléphone',
       content: culturalPlace.phoneNumber || null,
     },

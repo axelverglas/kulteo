@@ -9,7 +9,7 @@ interface LogoProps {
 export default function Logo({ ...props }: LogoProps) {
   const { resolvedTheme } = useTheme();
   return (
-    <Link href="/">
+    <Link href="/home">
       <svg
         {...props}
         viewBox="0 0 174 42"

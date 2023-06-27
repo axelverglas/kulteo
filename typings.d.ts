@@ -14,6 +14,8 @@ interface Video extends SanityBody {
   url: string;
   image: Image;
   type: 'relevantvideos' | 'stream';
+  culturalPlace: string;
+  culturalPlaceType: string;
 }
 
 interface Event extends SanityBody {
@@ -28,12 +30,14 @@ interface Event extends SanityBody {
   images: Image[];
   openingHours: string[];
   website: string;
+  price: string[];
   culturalPlace: CulturalPlace;
 }
 
 export interface Type extends SanityBody {
   _type: 'types';
   title: string;
+  category: string;
 }
 
 export interface CulturalPlace extends SanityBody {

@@ -14,7 +14,7 @@ export default function About() {
       <div className="container max-w-7xl">
         <div className="grid grid-cols-1 items-center md:grid-cols-2">
           <div>
-            <h2 className="font bold mb-10 font-roc text-3xl md:text-4xl">
+            <h2 className="mb-10 font-roc text-3xl font-bold md:text-4xl">
               Une
               <span className="mx-1 rounded-lg bg-secondarylight px-2 pt-1 text-white dark:bg-primary dark:text-night">
                 révélation

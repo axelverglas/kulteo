@@ -7,6 +7,7 @@ import { z } from 'zod';
 import Input from '@/components/Input';
 import Button from '@/components/Button';
 import Link from 'next/link';
+import { signUp } from 'next-auth-sanity/client';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
@@ -14,6 +15,7 @@ import { getSession } from 'next-auth/react';
 import { NextPageContext } from 'next';
 import AuthLeftSide from '@/components/auth/LeftSide';
 import GoogleButton from '@/components/auth/GoogleButton';
+import ts from 'typescript';
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
@@ -32,12 +34,13 @@ export async function getServerSideProps(context: NextPageContext) {
   };
 }
 
-const LoginFormSchema = z.object({
+const SignUpFormSchema = z.object({
+  name: z.string().min(1, 'Nom requis'),
   email: z.string().email('Veuillez entrer un email valide'),
   password: z.string().min(1, 'Mot de passe requis'),
 });
 
-type LoginFormInputs = z.infer<typeof LoginFormSchema>;
+type SignUpFormInputs = z.infer<typeof SignUpFormSchema>;
 
 export default function Login() {
   const router = useRouter();
@@ -45,36 +48,40 @@ export default function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormInputs>({
-    resolver: zodResolver(LoginFormSchema),
+  } = useForm<SignUpFormInputs>({
+    resolver: zodResolver(SignUpFormSchema),
   });
-  const onSubmit: SubmitHandler<LoginFormInputs> = async data => {
-    const { email, password } = data;
-
-    try {
-      const res = await signIn('sanity-login', {
+  const onSubmit: SubmitHandler<SignUpFormInputs> = async data => {
+    const { email, password, name } = data;
+  
+    const response = await signUp({
+      email,
+      password,
+      name,
+    });
+    
+    //@ts-ignore
+    if (response.error) {
+      //@ts-ignore
+      if (response.error === 'User already exist') {
+        toast.error('Cet utilisateur existe déjà');
+      } else {
+        toast.error('Une erreur est survenue. Veuillez réessayer plus tard.');
+      }
+    } else {
+      await signIn('sanity-login', {
         redirect: false,
         email,
-        password,
+        password
       });
-
-      if (res?.error) {
-        console.log(res);
-        toast.error('Invalid email or password.');
-        return;
-      }
-
       router.push('/home');
-    } catch (error) {
-      console.log(error);
-
-      toast.error('Something went wrong. Please try again later.');
     }
   };
+  
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2">
-      <AuthLeftSide className="hero-auth" />
+      <AuthLeftSide className="hero-auth-signup" />
       <div className="mx-auto flex w-96 flex-col justify-start gap-10 pt-32">
         <h2 className="text-center font-roc text-4xl font-bold">Connexion</h2>
         <div className="flex justify-center">
@@ -88,6 +95,14 @@ export default function Login() {
 
         <div>
           <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
+            <Input
+              id="name"
+              type="text"
+              label="Votre nom"
+              placeholder="Votre nom"
+              register={register('name')}
+              error={errors.name?.message}
+            />
             <Input
               id="email"
               type="email"
@@ -104,19 +119,16 @@ export default function Login() {
               register={register('password')}
               error={errors.password?.message}
             />
-            <p className="text-sm font-medium underline">
-              Mot de passe oublié?
-            </p>
             <div className="mt-8 flex items-center justify-center">
-              <Button type="submit">Se connecter</Button>
+              <Button type="submit">S&apos;inscire</Button>
             </div>
             <p className="mt-8 text-center">
-              Vous n&apos;avez pas de compte ?{' '}
+              Vous avez un compte ?{' '}
               <Link
-                href={'/auth/signup'}
+                href={'/auth/login'}
                 className="font-medium dark:text-secondary"
               >
-                Inscrivez-vous
+                Connectez-vous
               </Link>
             </p>
           </form>

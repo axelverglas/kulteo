@@ -3,7 +3,8 @@ import Link from 'next/link';
 import { MdOutlineBookmarkAdd } from 'react-icons/md';
 import { FaPlay } from 'react-icons/fa';
 import Heading from './Heading';
-import { limitTitleWords } from '@/utils/limitTitleWords';
+import { limitTitleLength } from '@/utils/limitTitleWords';
+import { CulturalPlace } from '../../typings';
 
 interface VideoCardProps {
   title: string;
@@ -18,7 +19,7 @@ export default function VideoCard({
   image,
   url,
 }: VideoCardProps) {
-  title = limitTitleWords(title, 3);
+  title = limitTitleLength(title, 20);
   return (
     <article className="flex h-auto w-full flex-col justify-between gap-y-6">
       <div className="relative w-full rounded-xl bg-night">

@@ -1,7 +1,7 @@
 import Hero from '@/components/Home/Hero';
 import Layout from '@/components/Layout';
 import { GetStaticProps } from 'next';
-import { CulturalPlace, Event, Type } from '../../typings';
+import { CulturalPlace, Event, Type, Video } from '../../typings';
 import { fetchAllCulturalPlaces } from '@/utils/fetchCulturalPlaces';
 import Card from '@/components/Card';
 import { urlFor } from '@/sanity';
@@ -13,19 +13,34 @@ import { fetchAllEvents } from '@/utils/fetchEvents';
 import Heading from '@/components/Heading';
 import { fetchTypes } from '@/utils/fetchTypes';
 import FilterButton from '@/components/FilterButton';
+import { fetchAllStreamVideos } from '@/utils/fetchVideos';
+import Link from 'next/link';
+import VideoCard from '@/components/VideoCard';
+import { useSession } from 'next-auth/react';
 
 interface Props {
   culturalPlace: CulturalPlace[];
   events: Event[];
   types: Type[];
+  videos: Video[];
+  eventTypes: Type[];
+  placeTypes: Type[];
 }
 
-export default function Dashboard({ culturalPlace, events, types }: Props) {
+export default function Dashboard({
+  culturalPlace,
+  events,
+  placeTypes,
+  eventTypes,
+  videos,
+}: Props) {
   const [variant, setVariant] = useState('culturalPlaces');
   const [filter, setFilter] = useState('');
   const [filteredCulturalPlaces, setFilteredCulturalPlaces] =
     useState(culturalPlace);
   const [filteredEvents, setFilteredEvents] = useState(events);
+  const [filteredVideos, setFilteredVideos] = useState(videos);
+  const { data: session } = useSession();
 
   const handleClick = () => {
     setVariant(variant === 'culturalPlaces' ? 'events' : 'culturalPlaces');
@@ -41,13 +56,20 @@ export default function Dashboard({ culturalPlace, events, types }: Props) {
     setFilteredEvents(
       events.filter(event => (value === '' ? true : event.type === value))
     );
+
+    // Filtering videos
+    setFilteredVideos(
+      videos.filter(video =>
+        value === '' ? true : video.culturalPlaceType === value
+      )
+    );
   };
   return (
     <Layout>
-      <Hero />
+      {!session && <Hero />}
       <Section>
         <Container>
-          <div className="overflow-x-auto">
+          <div className="max-w-[90vw] overflow-x-auto hide-scrollbar">
             <div className="inline-flex space-x-4">
               <FilterButton
                 active={filter === ''}
@@ -55,7 +77,7 @@ export default function Dashboard({ culturalPlace, events, types }: Props) {
               >
                 Tous
               </FilterButton>
-              {types.map(type => (
+              {placeTypes.map(type => (
                 <FilterButton
                   key={type._id}
                   active={filter === type.title}
@@ -64,10 +86,50 @@ export default function Dashboard({ culturalPlace, events, types }: Props) {
                   {type.title}
                 </FilterButton>
               ))}
+              {eventTypes.map(type => (
+                <FilterButton
+                  key={type._id}
+                  active={filter === type.title}
+                  onClick={() => {
+                    handleFilterChange(type.title);
+                    setVariant('events');
+                  }}
+                >
+                  {type.title}
+                </FilterButton>
+              ))}
             </div>
           </div>
           <div className="flex flex-col gap-y-14">
-            <div className="flex items-center gap-x-6">
+            <div className="mt-8 flex flex-col gap-8">
+              <div className="flex justify-between">
+                <Heading level="h2">
+                  Nos dernières{' '}
+                  <span className="text-secondarylight dark:text-primary">
+                    rediffusions
+                  </span>{' '}
+                </Heading>
+                <Link href={''} className="font-semibold text-secondarylight">
+                  Tout voir
+                </Link>
+              </div>
+              {filteredVideos.length > 0 ? (
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-20">
+                  {filteredVideos.slice(0, 3).map(video => (
+                    <VideoCard
+                      key={video._id}
+                      title={video.name}
+                      image={urlFor(video.image).url()}
+                      culturalPlace={video.culturalPlace}
+                      url={video.url}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <p className="text-left">Pas de vidéo pour le moment</p>
+              )}
+            </div>
+            <div className="flex items-center justify-center gap-x-6 md:justify-normal">
               <div className="flex items-center gap-x-6">
                 <ToggleButton
                   variant={variant}
@@ -103,7 +165,7 @@ export default function Dashboard({ culturalPlace, events, types }: Props) {
                         {filteredCulturalPlaces.length} résultat
                         {filteredCulturalPlaces.length > 1 ? 's' : ''}
                       </p>
-                      <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-20">
+                      <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-x-20 md:gap-y-10">
                         {filteredCulturalPlaces.map(place => (
                           <Card
                             key={place._id}
@@ -136,7 +198,7 @@ export default function Dashboard({ culturalPlace, events, types }: Props) {
                         {filteredEvents.length} résultat
                         {filteredEvents.length > 1 ? 's' : ''}
                       </p>
-                      <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-20">
+                      <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-20 md:gap-y-10">
                         {filteredEvents.map(event => (
                           <Card
                             key={event._id}
@@ -167,12 +229,17 @@ export const getStaticProps: GetStaticProps = async () => {
   const culturalPlace: CulturalPlace[] = await fetchAllCulturalPlaces();
   const events: Event[] = await fetchAllEvents();
   const types: Type[] = await fetchTypes();
+  const placeTypes = types.filter(type => type.category === 'place');
+  const eventTypes = types.filter(type => type.category === 'event');
+  const videos: Video[] = await fetchAllStreamVideos();
 
   return {
     props: {
       culturalPlace,
       events,
-      types,
+      placeTypes,
+      eventTypes,
+      videos,
     },
   };
 };

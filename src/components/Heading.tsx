@@ -11,10 +11,10 @@ interface HeadingProps {
 }
 
 const styleConfig: Record<HeadingLevel, string> = {
-  h1: 'text-3xl md:text-5xl font-roc',
-  h2: 'text-2xl md:text-4xl font-roc font-medium',
-  h3: 'text-xl md:text-3xl font-roc',
-  h4: 'text-lg md:text-2xl font-roc',
+  h1: 'text-3xl md:text-4xl font-roc font-bold',
+  h2: 'text-2xl md:text-[2rem] font-roc font-bold',
+  h3: 'text-xl md:text-2xl font-roc font-bold',
+  h4: 'text-lg md:text-xl font-roc font-bold',
 };
 
 export default function Heading({
