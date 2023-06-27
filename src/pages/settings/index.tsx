@@ -48,7 +48,7 @@ export default function Settings() {
                     height={55}
                     width={55}
                   />
-                  <p className="font-medium">Modifier ma photo de profil</p>
+                  <p className="font-medium">Modifier ma photo de profil yes</p>
                 </div>
                 <ArrowRightIcon className="h-5 w-5 stroke-night dark:stroke-whitesmoke" />
               </div>
