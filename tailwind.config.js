@@ -5,10 +5,11 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: 'class',
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: "1rem",
     },
     extend: {
       fontFamily: {
@@ -18,7 +19,16 @@ module.exports = {
       colors: {
         primary: "#E4B589",
         secondary: "#AB6FF9",
+        secondarylight: "#8758C4",
         whitesmoke: "#F4F4F4",
+        jetdark: "#2D2D2D",
+        dark: "#1E1E1E",
+        grayishblue: "#E5EAEE",
+        night: "#111111",
+      },
+      boxShadow: {
+        "night": "0px 1px 2px rgba(114, 113, 113, 0.25)",
+        "light": "0px 1px 2px rgba(229, 234, 238, 0.25)",
       },
       keyframes: {
         swing: {
@@ -37,11 +47,25 @@ module.exports = {
         },
       },
       animation: {
-        swing: 'swing 3s ease-in-out infinite',
+        swing: 'swing 2s ease-in-out infinite',
         swingRight: 'swingRight 1s ease-in-out infinite',
         moveUp: 'moveUp 1.5s ease-in-out infinite',
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function({ addUtilities }) {
+      const newUtilities = {
+        '.hide-scrollbar': {
+          'scrollbar-width': 'none', /* Firefox */
+          '-ms-overflow-style': 'none',  /* IE 10+ */
+          '&::-webkit-scrollbar': {
+            width: '0px',
+            background: 'transparent', /* Chrome/Safari/Webkit */
+          },
+        },
+      }
+      addUtilities(newUtilities)
+    }
+  ],
 };

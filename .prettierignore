@@ -3,6 +3,7 @@
 
 # Fichier de build
 /.next
+/.vercel
 
 # Fichier de configuration
 *.config.js

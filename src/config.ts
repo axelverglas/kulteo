@@ -8,5 +8,6 @@ export const siteConfig = {
     instagram: 'https://www.instagram.com/kulteofr/',
     linkedin: 'https://www.linkedin.com/company/kulteofr',
     discord: 'https://discord.gg/jQTwYmYVQy',
+    tiktok: 'https://www.tiktok.com/@kulteofr',
   },
 };

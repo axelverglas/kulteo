@@ -1,84 +1,32 @@
 import Head from 'next/head';
 import { siteConfig } from '@/config';
-import DefaultLayout from '@/components/DefaultLayout';
-import HeroA from '@/components/Home/Hero';
-import AboutA from '@/components/Home/About';
-import NewsletterFormA from '@/components/Home/Newsletter';
-import LaunchA from '@/components/Home/Launch';
-import SocialA from '@/components/Home/Social';
-import HeroB from '@/components/HomeB/Hero';
-import AboutB from '@/components/HomeB/About';
-import NewsletterFormB from '@/components/HomeB/Newsletter';
-import LaunchB from '@/components/HomeB/Launch';
-import SocialB from '@/components/HomeB/Social';
-import Soluce from '@/components/HomeB/Soluce';
-import { useEffect, useState } from 'react';
-
-declare global {
-  interface Window {
-    _paq: any[];
-  }
-}
+import About from '@/components/Landing/About';
+import Newsletter from '@/components/Landing/Newsletter';
+import Hero from '@/components/Landing/Hero';
+import DefaultLayout from '@/components/Landing/DefaultLayout';
+import Audience from '@/components/Landing/Audience';
+import Solution from '@/components/Landing/Solution';
+import Number from '@/components/Landing/Number';
 
 export default function Home() {
-  const [version, setVersion] = useState<string | null>(null);
-
-  const determineVersion = () => {
-    let randomNumber = Math.random(); // Génère un nombre aléatoire entre 0 (inclus) et 1 (exclus)
-    let selectedVersion: string;
-
-    if (typeof window !== 'undefined') {
-      // Initialise window._paq à un tableau vide si elle n'existe pas
-      window._paq = window._paq || [];
-
-      if (randomNumber < 0.5) {
-        selectedVersion = 'A';
-        window._paq.push([
-          'AbTesting::enter',
-          { experiment: 'Landing-page', variation: 'original' },
-        ]);
-      } else {
-        selectedVersion = 'B';
-        window._paq.push([
-          'AbTesting::enter',
-          { experiment: 'Landing-page', variation: 'landingb' },
-        ]);
-      }
-
-      setVersion(selectedVersion);
-    }
-  };
-
-  useEffect(() => {
-    determineVersion();
-  }, []);
-
   const title = `${siteConfig.name}, la plateforme qui rend la culture accessible à tous`;
 
   return (
     <>
       <Head>
         <title>{title}</title>
+        <meta
+          name="description"
+          content="Découvrez lieux et événements culturels, explorez, rencontrez et partagez des moments uniques à portée de clic avec Kulteo, un monde de culture sans limites."
+        />
       </Head>
       <DefaultLayout>
-        {version === 'A' ? (
-          <>
-            <HeroA />
-            <AboutA />
-            <LaunchA />
-            <NewsletterFormA />
-            <SocialA />
-          </>
-        ) : (
-          <>
-            <HeroB />
-            <AboutB />
-            <Soluce />
-            <LaunchB />
-            <NewsletterFormB />
-            <SocialB />
-          </>
-        )}
+        <Hero />
+        <About />
+        <Audience />
+        <Solution />
+        <Number />
+        <Newsletter />
       </DefaultLayout>
     </>
   );

@@ -1,8 +1,6 @@
-import DefaultLayout from '@/components/DefaultLayout';
-import Footer from '@/components/Footer';
-import Social from '@/components/Home/Social';
 import Head from 'next/head';
 import { siteConfig } from '@/config';
+import DefaultLayout from '@/components/Landing/DefaultLayout';
 
 function SubTitle({ children }: { children: React.ReactNode }) {
   return <h2 className="mb-4 font-roc text-2xl">{children}</h2>;
@@ -20,7 +18,11 @@ export default function legal() {
   return (
     <>
       <Head>
-        <title>{siteConfig.name}</title>
+        <title>Mentions légales - Kulteo</title>
+        <meta
+          name="description"
+          content="Consultez nos mentions légales pour en savoir plus sur nos politiques et nos engagements."
+        />
       </Head>
       <DefaultLayout>
         <section className="py-12 pt-24 md:py-24 md:pt-48">
@@ -305,7 +307,6 @@ export default function legal() {
             </Text>
           </div>
         </section>
-        <Social />
       </DefaultLayout>
     </>
   );
