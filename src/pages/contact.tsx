@@ -50,53 +50,53 @@ export default function ContactForm() {
 
   return (
     <>
-    <Head>
-      <title>Contactez-nous - Kulteo</title>
-      <meta
-        name="description"
-        content="Besoin d'aide, de suggestions ou de partenariats ? Contactez-nous et notre équipe sera ravie de vous assister."
-      />
-    </Head>
-    <Layout>
-      <Section>
-        <div className="container">
-          <div className="grid grid-cols-1 gap-14 md:grid-cols-2">
-            <div>
-              <Heading level="h2">Contactez-nous</Heading>
-              <p className="mb-8 mt-6">
-                Une question ? Nos équipes vous répondront dès que possible
-              </p>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <Input
-                  id="email"
-                  label="Email"
-                  type="email"
-                  placeholder="Indiquez votre adresse mail"
-                  register={register('email')}
-                  error={errors.email?.message}
-                />
-                <Input
-                  id="message"
-                  label="Message"
-                  placeholder="Posez vos questions et partagez vos remarques"
-                  register={register('message')}
-                  error={errors.message?.message}
-                  textarea
-                />
-                <Button type="submit">Envoyer le message</Button>
-              </form>
-            </div>
-            <div className="mt-6 md:mt-0">
-              <Heading level="h2">Nos réseaux sociaux</Heading>
-              <p className="mb-8 mt-6">
-                L&apos;écosystème qui rend la culture accessible à tous
-              </p>
-              <SocialLinks />
+      <Head>
+        <title>Contactez-nous - Kulteo</title>
+        <meta
+          name="description"
+          content="Besoin d'aide, de suggestions ou de partenariats ? Contactez-nous et notre équipe sera ravie de vous assister."
+        />
+      </Head>
+      <Layout>
+        <Section>
+          <div className="container">
+            <div className="grid grid-cols-1 gap-14 md:grid-cols-2">
+              <div>
+                <Heading level="h2">Contactez-nous</Heading>
+                <p className="mb-8 mt-6">
+                  Une question ? Nos équipes vous répondront dès que possible
+                </p>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <Input
+                    id="email"
+                    label="Email"
+                    type="email"
+                    placeholder="Indiquez votre adresse mail"
+                    register={register('email')}
+                    error={errors.email?.message}
+                  />
+                  <Input
+                    id="message"
+                    label="Message"
+                    placeholder="Posez vos questions et partagez vos remarques"
+                    register={register('message')}
+                    error={errors.message?.message}
+                    textarea
+                  />
+                  <Button type="submit">Envoyer le message</Button>
+                </form>
+              </div>
+              <div className="mt-6 md:mt-0">
+                <Heading level="h2">Nos réseaux sociaux</Heading>
+                <p className="mb-8 mt-6">
+                  L&apos;écosystème qui rend la culture accessible à tous
+                </p>
+                <SocialLinks />
+              </div>
             </div>
           </div>
-        </div>
-      </Section>
-    </Layout>
+        </Section>
+      </Layout>
     </>
   );
 }

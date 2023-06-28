@@ -44,11 +44,11 @@ export default function Infos({
       <div>
         {subtitle && (
           <Heading
-          level="h3"
-          className="mb-6 font-medium text-secondarylight dark:text-primary"
-        >
-          {subtitle}
-        </Heading>
+            level="h3"
+            className="mb-6 font-medium text-secondarylight dark:text-primary"
+          >
+            {subtitle}
+          </Heading>
         )}
         <MoreText text={description} />
       </div>

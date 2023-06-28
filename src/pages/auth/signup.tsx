@@ -53,13 +53,13 @@ export default function Login() {
   });
   const onSubmit: SubmitHandler<SignUpFormInputs> = async data => {
     const { email, password, name } = data;
-  
+
     const response = await signUp({
       email,
       password,
       name,
     });
-    
+
     //@ts-ignore
     if (response.error) {
       //@ts-ignore
@@ -72,12 +72,11 @@ export default function Login() {
       await signIn('sanity-login', {
         redirect: false,
         email,
-        password
+        password,
       });
       router.push('/home');
     }
   };
-  
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2">

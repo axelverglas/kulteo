@@ -7,10 +7,7 @@ import Head from 'next/head';
 import TagManager from 'gtm-for-react';
 import { useEffect } from 'react';
 import { ThemeProvider } from 'next-themes';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import { SessionProvider } from 'next-auth/react';
-
-const queryClient = new QueryClient();
 
 const tagManagerArgs = {
   gtmId: 'GTM-T5LNRJX',
@@ -64,6 +61,7 @@ export default function App({
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content={siteConfig.description} />
+        <meta name="robots" content="all" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="canonical" href={siteConfig.url} />
         <link rel="dns-prefetch" href={siteConfig.url} />
@@ -91,12 +89,10 @@ export default function App({
         `}
       </style>
       <ThemeProvider attribute="class">
-        <QueryClientProvider client={queryClient}>
-          <SessionProvider session={session}>
-            <Toaster />
-            <Component {...pageProps} />
-          </SessionProvider>
-        </QueryClientProvider>
+        <SessionProvider session={session}>
+          <Toaster />
+          <Component {...pageProps} />
+        </SessionProvider>
       </ThemeProvider>
     </>
   );

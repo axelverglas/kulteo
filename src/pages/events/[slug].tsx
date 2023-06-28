@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Layout from '@/components/Layout';
 import Container from '@/components/Container';
 import Section from '@/components/Section';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import { Event } from '../../../typings';
 import {
   fetchOneEvent,
@@ -128,17 +128,9 @@ export default function Single({ event, samePlaceEvents, otherEvents }: Props) {
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const events = await fetchAllEvents();
-
-  const paths = events.map(event => ({
-    params: { slug: event.slug.current },
-  }));
-
-  return { paths, fallback: 'blocking' };
-};
-
-export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps<Props> = async ({
+  params,
+}) => {
   const event = await fetchOneEvent(params?.slug as string);
 
   if (!event) {
@@ -151,5 +143,5 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   );
   const otherEvents = await getAllOtherEvents(event._id);
 
-  return { props: { event, samePlaceEvents, otherEvents }, revalidate: 1 };
+  return { props: { event, samePlaceEvents, otherEvents } };
 };

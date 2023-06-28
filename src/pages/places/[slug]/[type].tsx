@@ -5,11 +5,8 @@ import Section from '@/components/Section';
 import VideoCard from '@/components/VideoCard';
 import { urlFor } from '@/sanity';
 import Heading from '@/components/Heading';
-import { GetStaticPaths, GetStaticProps } from 'next';
-import {
-  fetchOneCulturalPlaces,
-  fetchAllCulturalPlaces,
-} from '@/utils/fetchCulturalPlaces';
+import { GetServerSideProps } from 'next';
+import { fetchOneCulturalPlaces } from '@/utils/fetchCulturalPlaces';
 import { getVideosForPlace } from '@/utils/fetchVideos';
 import { CulturalPlace, Video } from '../../../../typings';
 import Link from 'next/link';
@@ -22,11 +19,14 @@ type Props = {
 };
 
 export default function Videos({ videos, culturalPlace, videoType }: Props) {
-  const title = videoType === 'stream' ? 'Livestreams' : 'Vidéos pertinentes';
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>Rediffusions et ressources culturelles - Découvrez Kulteo</title>
+        <meta
+          name="description"
+          content="Explorez nos rediffusions de vidéos culturelles et accédez à une variété de ressources culturelles en ligne avec Kulteo."
+        />
       </Head>
       <Layout>
         <Section>
@@ -63,19 +63,7 @@ export default function Videos({ videos, culturalPlace, videoType }: Props) {
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const culturalPlaces = await fetchAllCulturalPlaces();
-
-  const paths = culturalPlaces.flatMap(place => {
-    return ['stream', 'videorelevant'].map(type => {
-      return { params: { slug: place.slug.current, type } };
-    });
-  });
-
-  return { paths, fallback: 'blocking' };
-};
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const culturalPlace = await fetchOneCulturalPlaces(params?.slug as string);
   const videos = await getVideosForPlace(culturalPlace._id);
 
@@ -83,5 +71,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     video => video.type === (params?.type as string)
   );
 
-  return { props: { videos: relevantVideos, culturalPlace }, revalidate: 1 };
+  return { props: { videos: relevantVideos, culturalPlace } };
 };

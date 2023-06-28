@@ -5,12 +5,9 @@ import Section from '@/components/Section';
 import Accordion from '@/components/Accordion';
 import Infos from '@/components/Infos';
 import { AccordionItem } from '@/types/Index';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import { CulturalPlace, Video, Event } from '../../../../typings';
-import {
-  fetchOneCulturalPlaces,
-  fetchAllCulturalPlaces,
-} from '@/utils/fetchCulturalPlaces';
+import { fetchOneCulturalPlaces } from '@/utils/fetchCulturalPlaces';
 import { getVideosForPlace } from '@/utils/fetchVideos';
 import { getEventsForPlace } from '@/utils/fetchEvents';
 import VideoCard from '@/components/VideoCard';
@@ -20,7 +17,12 @@ import ToggleButton from '@/components/ToggleButton';
 import Link from 'next/link';
 import { useState } from 'react';
 import Card from '@/components/Card';
-import { OpeningHoursIcon, MapIcon, PriceIcon, ContactIcon } from '@/components/Icons';
+import {
+  OpeningHoursIcon,
+  MapIcon,
+  PriceIcon,
+  ContactIcon,
+} from '@/components/Icons';
 
 type Props = {
   culturalPlace: CulturalPlace;
@@ -149,31 +151,24 @@ export default function Single({ culturalPlace, videos, events }: Props) {
                   </>
                 ) : (
                   <>
-                    <Heading level="h2" className="mb-6">
-                      Liste des{' '}
-                      <span className="text-secondarylight dark:text-primary">
-                        vidéos
-                      </span>
-                    </Heading>
-                    {relevantVideos.length > 0 && (
+                    {twitchStreams.length > 0 && (
                       <>
                         <div className="flex justify-between">
                           <Heading level="h3" className="mb-6">
-                            Ces{' '}
-                            <span className="text-secondarylight">
-                              rediffusions de live
+                            Laissez-vous envoûter par nos{' '}
+                            <span className="text-secondarylight dark:text-primary">
+                              rediffusions
                             </span>{' '}
-                            pourraient vous plaire
                           </Heading>
                           <Link
-                            href={`/places/${culturalPlace.slug.current}/relevantvideos`}
+                            href={`/places/${culturalPlace.slug.current}/stream`}
                             className="font-semibold text-secondarylight"
                           >
                             Tout voir
                           </Link>
                         </div>
                         <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-20">
-                          {relevantVideos.slice(0, 3).map(video => (
+                          {twitchStreams.slice(0, 3).map(video => (
                             <VideoCard
                               key={video._id}
                               title={video.name}
@@ -185,25 +180,24 @@ export default function Single({ culturalPlace, videos, events }: Props) {
                         </div>
                       </>
                     )}
-                    {twitchStreams.length > 0 && (
+                    {relevantVideos.length > 0 && (
                       <>
                         <div className="mt-8 flex justify-between">
                           <Heading level="h3" className="mb-6">
-                            Ces{' '}
+                            Émerveillez-vous avec nos{' '}
                             <span className="text-secondarylight dark:text-primary">
-                              rediffusions de live
+                              ressources vidéos
                             </span>{' '}
-                            pourraient vous plaire
                           </Heading>
                           <Link
-                            href={`/places/${culturalPlace.slug.current}/stream`}
+                            href={`/places/${culturalPlace.slug.current}/relevantvideos`}
                             className="font-semibold text-secondarylight"
                           >
                             Tout voir
                           </Link>
                         </div>
                         <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-20">
-                          {twitchStreams.slice(0, 3).map(video => (
+                          {relevantVideos.slice(0, 3).map(video => (
                             <VideoCard
                               key={video._id}
                               title={video.name}
@@ -229,17 +223,9 @@ export default function Single({ culturalPlace, videos, events }: Props) {
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const culturalPlaces = await fetchAllCulturalPlaces();
-
-  const paths = culturalPlaces.map(place => ({
-    params: { slug: place.slug.current },
-  }));
-
-  return { paths, fallback: 'blocking' };
-};
-
-export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps<Props> = async ({
+  params,
+}) => {
   const culturalPlace = await fetchOneCulturalPlaces(params?.slug as string);
 
   if (!culturalPlace) {
@@ -249,5 +235,5 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const videos = await getVideosForPlace(culturalPlace._id);
   const events = await getEventsForPlace(culturalPlace._id);
 
-  return { props: { culturalPlace, videos, events }, revalidate: 1 };
+  return { props: { culturalPlace, videos, events } };
 };

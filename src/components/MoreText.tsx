@@ -16,7 +16,7 @@ export default function TextContainer({ text }: { text: string }) {
         <>
           {text}
           <button
-            className="ml-2 font-medium text-secondarylight dark:text-primary"
+            className="font-medium text-secondarylight dark:text-primary"
             onClick={handleClick}
           >
             Voir moins
@@ -28,7 +28,7 @@ export default function TextContainer({ text }: { text: string }) {
           ...
           {words.length > maxWords && (
             <button
-              className="ml-2 font-medium text-secondarylight dark:text-primary"
+              className="font-medium text-secondarylight dark:text-primary"
               onClick={handleClick}
             >
               Voir plus

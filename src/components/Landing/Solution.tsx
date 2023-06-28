@@ -49,7 +49,7 @@ export default function Solution() {
             </ul>
             <Button href="/home">Découvrez Kulteo</Button>
           </div>
-          <div className="">
+          <div>
             <Image
               src="/img/solution.webp"
               alt="Solution"

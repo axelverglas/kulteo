@@ -12,7 +12,7 @@ import { useRouter } from 'next/router';
 
 const navigation = [
   { name: 'Accueil', href: '/home', icon: MuseumsIcon },
-  { name: 'Contact', href: '/contact', icon: ContactIcon },
+  { name: 'Échangeons', href: '/contact', icon: ContactIcon },
 ];
 
 interface SidebarProps {
@@ -43,10 +43,10 @@ function NavigationItem({
           {item.icon && (
             <item.icon
               className={clsx(
-                'mr-4 h-7 w-7',
+                'mr-4 h-7 w-7 hover:stroke-secondarylight dark:hover:stroke-primary',
                 isCurrent
                   ? 'stroke-secondarylight dark:stroke-primary'
-                  : ' stroke-night dark:stroke-whitesmoke'
+                  : 'stroke-night dark:stroke-whitesmoke'
               )}
             />
           )}

@@ -16,7 +16,7 @@ const query = groq`
     image,
     type,
     "culturalPlace": culturalplace->name,
-    "culturalPlaceType": culturalplace->type,
+    "culturalPlaceType": culturalplace->type->title,
   }
 `;
 

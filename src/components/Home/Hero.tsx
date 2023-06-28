@@ -35,7 +35,7 @@ export default function Hero() {
             </div>
             <div className="flex items-center justify-center">
               <Video
-                videoUrl="https://www.youtube.com/watch?v=RSSXt0h3CYo"
+                videoUrl="https://www.youtube.com/watch?v=gOoJPSM7SP8"
                 width="553px"
                 height="277px"
               />

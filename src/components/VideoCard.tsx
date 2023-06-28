@@ -4,7 +4,6 @@ import { MdOutlineBookmarkAdd } from 'react-icons/md';
 import { FaPlay } from 'react-icons/fa';
 import Heading from './Heading';
 import { limitTitleLength } from '@/utils/limitTitleWords';
-import { CulturalPlace } from '../../typings';
 
 interface VideoCardProps {
   title: string;

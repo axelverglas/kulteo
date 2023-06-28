@@ -27,7 +27,7 @@ export default function Header({ handleMobileClick }: HeaderProps) {
           {session ? (
             <Account />
           ) : (
-            <Button href="/auth/login" className='mt-1'>Se connecter</Button>
+            <Button href="/auth/login">Se connecter</Button>
           )}
         </div>
       </div>
