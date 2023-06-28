@@ -28,8 +28,7 @@ export default function VideoSingle({ title, url, culturalPlace }: Props) {
           </Heading>
         </div>
         <div className="flex items-center gap-x-3">
-          <ToggleShare description="" />
-          <BookMarkIcon className="h-6 w-6 stroke-night dark:stroke-white" />
+          <ToggleShare description={title} />
         </div>
       </div>
       <div className="mb-4">

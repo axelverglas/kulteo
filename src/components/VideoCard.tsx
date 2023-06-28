@@ -17,7 +17,6 @@ export default function VideoCard({
   title,
   culturalPlace,
   image,
-  url,
   slug,
 }: VideoCardProps) {
   title = limitTitleLength(title, 20);
@@ -30,10 +29,9 @@ export default function VideoCard({
             width={600}
             height={300}
             src={image}
-            alt="oui"
+            alt={title}
           />
         </Link>
-        <MdOutlineBookmarkAdd className="absolute right-5 top-4 text-4xl text-white" />
         <FaPlay className="absolute left-[45%] top-[40%] text-4xl text-whitesmoke" />
       </div>
       <div className="flex flex-col gap-y-1">

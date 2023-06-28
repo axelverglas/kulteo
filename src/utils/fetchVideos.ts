@@ -45,12 +45,11 @@ export async function fetchOtherVideos(videoId: string) {
 }
 
 export async function fetchComments(videoId: string) {
-  const query = groq`*[_type == "comment" && video._ref == $videoId]{
+  const query = groq`*[_type == "comment" && video._ref == $videoId] | order(_createdAt desc){
     ...,
     "user": user->name,
     "userImage": user->image,
   }`;
-
   const comments = await sanityClient.fetch(query, { videoId });
   return comments;
 }

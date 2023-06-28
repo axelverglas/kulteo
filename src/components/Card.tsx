@@ -52,7 +52,6 @@ export default function Card({
                 {title}
               </Heading>
             </Link>
-            <BookMarkIcon className="h-6 w-6 stroke-night dark:stroke-white" />
           </div>
           <p className="text-night dark:text-white">{shortDescription}</p>
           <div className="flex items-center gap-x-2">

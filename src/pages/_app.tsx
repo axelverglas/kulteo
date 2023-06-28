@@ -8,6 +8,8 @@ import TagManager from 'gtm-for-react';
 import { useEffect } from 'react';
 import { ThemeProvider } from 'next-themes';
 import { SessionProvider } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const tagManagerArgs = {
   gtmId: 'GTM-T5LNRJX',
@@ -55,6 +57,7 @@ export default function App({
   useEffect(() => {
     TagManager.initialize(tagManagerArgs);
   }, []);
+  const router = useRouter();
   return (
     <>
       <Head>
@@ -90,8 +93,34 @@ export default function App({
       </style>
       <ThemeProvider attribute="class">
         <SessionProvider session={session}>
+        <AnimatePresence mode='wait'>
+      <motion.div
+        key={router.route}
+        initial="initialState"
+        animate="animateState"
+        exit="exitState"
+        transition={{
+          duration: 0.75,
+        }}
+        variants={{
+          initialState: {
+            opacity: 0,
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+          },
+          animateState: {
+            opacity: 1,
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+          },
+          exitState: {
+            clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)",
+          },
+        }}
+        className="base-page-size"
+      >
           <Toaster />
           <Component {...pageProps} />
+          </motion.div>
+        </AnimatePresence>
         </SessionProvider>
       </ThemeProvider>
     </>

@@ -14,6 +14,7 @@ import { getSession } from 'next-auth/react';
 import { NextPageContext } from 'next';
 import AuthLeftSide from '@/components/auth/LeftSide';
 import GoogleButton from '@/components/auth/GoogleButton';
+import Head from 'next/head';
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
@@ -73,55 +74,61 @@ export default function Login() {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2">
-      <AuthLeftSide className="hero-auth" />
-      <div className="mx-auto flex w-96 flex-col justify-start gap-10 pt-32">
-        <h2 className="text-center font-roc text-4xl font-bold">Connexion</h2>
-        <div className="flex justify-center">
-          <GoogleButton />
-        </div>
-        <div className="flex items-center">
-          <hr className="flex-grow border-t border-gray-300" />
-          <p className="mx-4">ou</p>
-          <hr className="flex-grow border-t border-gray-300" />
-        </div>
+    <>
+      <Head>
+        <title>Kulteo - Connexion à votre compte</title>
+        <meta
+          name="description"
+          content="Connectez-vous à votre compte Kulteo pour explorer la culture autrement. Rejoignez la communauté Kulteo dès maintenant !"
+        />
+      </Head>
+      <div className="grid grid-cols-1 md:grid-cols-2">
+        <AuthLeftSide className="hero-auth" />
+        <div className="mx-auto flex w-96 flex-col justify-start gap-10 pt-32">
+          <h2 className="text-center font-roc text-4xl font-bold">Connexion</h2>
+          <div className="flex justify-center">
+            <GoogleButton />
+          </div>
+          <div className="flex items-center">
+            <hr className="flex-grow border-t border-gray-300" />
+            <p className="mx-4">ou</p>
+            <hr className="flex-grow border-t border-gray-300" />
+          </div>
 
-        <div>
-          <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
-            <Input
-              id="email"
-              type="email"
-              label="Adresse mail"
-              placeholder="Votre adresse email"
-              register={register('email')}
-              error={errors.email?.message}
-            />
-            <Input
-              id="password"
-              type="password"
-              label="Mot de passe"
-              placeholder="Votre mot de passe"
-              register={register('password')}
-              error={errors.password?.message}
-            />
-            <p className="text-sm font-medium underline">
-              Mot de passe oublié?
-            </p>
-            <div className="mt-8 flex items-center justify-center">
-              <Button type="submit">Se connecter</Button>
-            </div>
-            <p className="mt-8 text-center">
-              Vous n&apos;avez pas de compte ?{' '}
-              <Link
-                href={'/auth/signup'}
-                className="font-medium dark:text-secondary"
-              >
-                Inscrivez-vous
-              </Link>
-            </p>
-          </form>
+          <div>
+            <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
+              <Input
+                id="email"
+                type="email"
+                label="Adresse mail"
+                placeholder="Votre adresse email"
+                register={register('email')}
+                error={errors.email?.message}
+              />
+              <Input
+                id="password"
+                type="password"
+                label="Mot de passe"
+                placeholder="Votre mot de passe"
+                register={register('password')}
+                error={errors.password?.message}
+              />
+              <div className="mt-8 flex items-center justify-center">
+                <Button type="submit">Se connecter</Button>
+              </div>
+              <p className="mt-8 text-center">
+                Vous n&apos;avez pas de compte ?{' '}
+                <Link
+                  href={'/auth/signup'}
+                  className="font-medium dark:text-secondary"
+                >
+                  Inscrivez-vous
+                </Link>
+              </p>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

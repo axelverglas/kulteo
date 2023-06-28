@@ -11,7 +11,7 @@ export default function Solution() {
         <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-16">
           <div>
             <Video
-              videoUrl="https://www.youtube.com/watch?v=gOoJPSM7SP8"
+              videoUrl="https://www.youtube.com/watch?v=xKzPSdWPCLo"
               width="100%"
               height="277px"
             />

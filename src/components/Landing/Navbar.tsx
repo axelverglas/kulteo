@@ -65,7 +65,9 @@ export default function Navbar() {
               fill="#F4F4F4"
             />
           </svg>
-          <ToggleThemes />
+          <div className="flex gap-6">
+            <ToggleThemes />
+          </div>
         </nav>
       </div>
     </header>

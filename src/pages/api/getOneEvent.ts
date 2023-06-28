@@ -18,6 +18,7 @@ const query = groq`
     address,
     openingHours,
     website,
+    price,
     "type": type->title,
     "culturalPlace": culturalPlace->{name, _id, address, slug}
   }

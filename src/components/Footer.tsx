@@ -5,11 +5,9 @@ import SocialLinks from './Social';
 export default function Footer() {
   const footerLinks = [
     { path: '/', label: 'Accueil' },
-    { path: '/about', label: 'À propos' },
+    { path: '/#about', label: 'À propos' },
     { path: '/contact', label: 'Contact' },
     { path: '/legal', label: 'Mentions légales' },
-    { path: '/link5', label: 'Lien 5' },
-    { path: '/link6', label: 'Lien 6' },
   ];
 
   return (
@@ -37,8 +35,6 @@ export default function Footer() {
           <p>© Copyright 2023 Kulteo</p>
           <span>|</span>
           <Link href={'/legal'}>Mentions légales</Link>
-          <span>|</span>
-          <Link href={'/legal'}>Politique de confidentialité</Link>
         </div>
       </div>
     </footer>

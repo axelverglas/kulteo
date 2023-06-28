@@ -51,7 +51,13 @@ export default function Single({ culturalPlace, videos, events }: Props) {
     {
       icon: PriceIcon,
       title: 'Tarif',
-      content: culturalPlace.price || null,
+      content: culturalPlace.price ? (
+        <ul>
+          {culturalPlace.price.map((price, index) => (
+            <li key={index}>{price}</li>
+          ))}
+        </ul>
+      ) : null,
     },
     {
       icon: ContactIcon,

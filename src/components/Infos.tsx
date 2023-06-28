@@ -1,10 +1,8 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Heading from '@/components/Heading';
 import Button from '@/components/Button';
 import { ArrowLeftIcon } from '@/components/Icons';
 import ToggleShare from '@/components/ToggleShare';
-import { BookMarkIcon } from '@/components/Icons';
 import MoreText from '@/components/MoreText';
 
 interface InfosProps {
@@ -33,11 +31,12 @@ export default function Infos({
           <button onClick={handleGoBack}>
             <ArrowLeftIcon className="h-6 w-6 stroke-night dark:stroke-white" />
           </button>
-          <Heading level="h2">{title}</Heading>
+          <Heading level="h1" size="h2">
+            {title}
+          </Heading>
         </div>
         <div className="flex items-center gap-x-3">
           <ToggleShare description={description} />
-          <BookMarkIcon className="h-6 w-6 stroke-night dark:stroke-white" />
         </div>
       </div>
 

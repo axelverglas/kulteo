@@ -20,7 +20,6 @@ export default async function handler(
     return;
   }
 
-  // Add new comment
   const { comment, videoId } = req.body;
   const userRef = await sanityClient.fetch(
     `*[_type == "user" && email == $email][0]._id`,
@@ -29,7 +28,7 @@ export default async function handler(
 
   const publishedAt = new Date().toISOString();
 
-  await sanityClient.create({
+  const newComment = {
     _type: 'comment',
     comment,
     user: {
@@ -41,7 +40,9 @@ export default async function handler(
       _ref: videoId,
     },
     publishedAt: publishedAt,
-  });
+  };
 
-  res.status(201).end();
+  await sanityClient.create(newComment);
+
+  res.status(201).json(newComment);
 }

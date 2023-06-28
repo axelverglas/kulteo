@@ -15,6 +15,7 @@ const query = groq`*[_type == "culturalPlace" && slug.current == $slug][0]{
   images,
   address,
   openingHours,
+  price,
   website,
   "type": type->title
 }`;

@@ -26,13 +26,7 @@ interface Props {
 export default function VideoSingle({ video, otherVideo }: Props) {
   const { data: session } = useSession();
   const { data: comments, error } = useSWR<Comment[]>(
-    video._id,
-    fetchComments,
-    {
-      refreshInterval: 5000,
-      revalidateOnMount: true,
-    }
-  );
+    video._id, fetchComments);
 
   const isLoading = !comments && !error;
 
@@ -44,18 +38,13 @@ export default function VideoSingle({ video, otherVideo }: Props) {
     );
   }
 
-  const handleNewComment = () => {
-    mutate(video._id);
-  };
-  const title = `${video.name} - Kulteo`;
+  const title = `${video.name} - Découvrez Kulteo "`;
+  const description = `Plongez dans le monde de la culture avec la vidéo - ${video.name} - Découvrez Kulteo`;
   return (
     <>
       <Head>
         <title>{title}</title>
-        <meta
-            name="description"
-            content=''
-        />
+        <meta name="description" content={description} />
       </Head>
       <Layout>
         <Section>
@@ -73,27 +62,28 @@ export default function VideoSingle({ video, otherVideo }: Props) {
                     {comments.length > 1 ? 's' : ''}
                   </p>
                 )}
-                <div className="mb-10 flex gap-x-10">
-                  <div className="h-14 w-16">
-                    <Image
-                      src={session?.user?.image || '/img/default-avatar.webp'}
-                      alt="Avatar"
-                      className="rounded-full"
-                      height={60}
-                      width={60}
-                    />
+                {session && (
+                  <div className="mb-10 flex gap-x-10">
+                    <div className="h-14 w-16">
+                      <Image
+                        src={session?.user?.image || '/img/default-avatar.webp'}
+                        alt="Avatar"
+                        className="rounded-full"
+                        height={60}
+                        width={60}
+                      />
+                    </div>
+                    <div className="w-full">
+                      <CommentForm
+                        videoId={video._id}
+                      />
+                    </div>
                   </div>
-                  <div className="w-full">
-                    <CommentForm
-                      videoId={video._id}
-                      onCommentSubmit={handleNewComment}
-                    />
-                  </div>
-                </div>
+                )}
                 <div className="flex flex-col gap-y-10">
                   {isLoading ? (
                     <p>Chargement en cours...</p>
-                  ) : comments ? (
+                  ) : comments && comments.length > 0 ? (
                     comments.map(comment => (
                       <div className="flex gap-x-10" key={comment._id}>
                         <div className="h-14 w-16">

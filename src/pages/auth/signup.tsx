@@ -1,6 +1,3 @@
-import { items } from '@/components/ListItem';
-import ListItem from '@/components/ListItem';
-import Logo from '@/components/Logo';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -14,8 +11,8 @@ import { toast } from 'react-hot-toast';
 import { getSession } from 'next-auth/react';
 import { NextPageContext } from 'next';
 import AuthLeftSide from '@/components/auth/LeftSide';
+import Head from 'next/head';
 import GoogleButton from '@/components/auth/GoogleButton';
-import ts from 'typescript';
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
@@ -79,60 +76,69 @@ export default function Login() {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2">
-      <AuthLeftSide className="hero-auth-signup" />
-      <div className="mx-auto flex w-96 flex-col justify-start gap-10 pt-32">
-        <h2 className="text-center font-roc text-4xl font-bold">Connexion</h2>
-        <div className="flex justify-center">
-          <GoogleButton />
-        </div>
-        <div className="flex items-center">
-          <hr className="flex-grow border-t border-gray-300" />
-          <p className="mx-4">ou</p>
-          <hr className="flex-grow border-t border-gray-300" />
-        </div>
+    <>
+      <Head>
+        <title>Kulteo - Créez votre compte gratuitement</title>
+        <meta
+          name="description"
+          content="Inscrivez-vous gratuitement sur Kulteo et plongez dans l'univers culturel.  Explorez notre sélection et vivez des moments culturels uniques."
+        />
+      </Head>
+      <div className="grid grid-cols-1 md:grid-cols-2">
+        <AuthLeftSide className="hero-auth-signup" />
+        <div className="mx-auto flex w-96 flex-col justify-start gap-10 pt-32">
+          <h2 className="text-center font-roc text-4xl font-bold">Connexion</h2>
+          <div className="flex justify-center">
+            <GoogleButton />
+          </div>
+          <div className="flex items-center">
+            <hr className="flex-grow border-t border-gray-300" />
+            <p className="mx-4">ou</p>
+            <hr className="flex-grow border-t border-gray-300" />
+          </div>
 
-        <div>
-          <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
-            <Input
-              id="name"
-              type="text"
-              label="Votre nom"
-              placeholder="Votre nom"
-              register={register('name')}
-              error={errors.name?.message}
-            />
-            <Input
-              id="email"
-              type="email"
-              label="Adresse mail"
-              placeholder="Votre adresse email"
-              register={register('email')}
-              error={errors.email?.message}
-            />
-            <Input
-              id="password"
-              type="password"
-              label="Mot de passe"
-              placeholder="Votre mot de passe"
-              register={register('password')}
-              error={errors.password?.message}
-            />
-            <div className="mt-8 flex items-center justify-center">
-              <Button type="submit">S&apos;inscire</Button>
-            </div>
-            <p className="mt-8 text-center">
-              Vous avez un compte ?{' '}
-              <Link
-                href={'/auth/login'}
-                className="font-medium dark:text-secondary"
-              >
-                Connectez-vous
-              </Link>
-            </p>
-          </form>
+          <div>
+            <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
+              <Input
+                id="name"
+                type="text"
+                label="Votre nom"
+                placeholder="Votre nom"
+                register={register('name')}
+                error={errors.name?.message}
+              />
+              <Input
+                id="email"
+                type="email"
+                label="Adresse mail"
+                placeholder="Votre adresse email"
+                register={register('email')}
+                error={errors.email?.message}
+              />
+              <Input
+                id="password"
+                type="password"
+                label="Mot de passe"
+                placeholder="Votre mot de passe"
+                register={register('password')}
+                error={errors.password?.message}
+              />
+              <div className="mt-8 flex items-center justify-center">
+                <Button type="submit">S&apos;inscire</Button>
+              </div>
+              <p className="mt-8 text-center">
+                Vous avez un compte ?{' '}
+                <Link
+                  href={'/auth/login'}
+                  className="font-medium dark:text-secondary"
+                >
+                  Connectez-vous
+                </Link>
+              </p>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
