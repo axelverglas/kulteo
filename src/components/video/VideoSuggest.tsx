@@ -21,12 +21,12 @@ export default function VideoSuggest({
 }: Props) {
   title = limitTitleLength(title, 15);
   return (
-    <article className="mb-6 flex gap-4 last-of-type:mb-0">
-      <div className="relative rounded-xl bg-night">
+    <article className="mb-6 flex flex-row gap-4 last-of-type:mb-0">
+      <div className="w-full sm:w-1/2 relative rounded-xl bg-night">
         <Link href={`/videos/${slug.current}`}>
-          <div className="relative rounded-xl bg-night">
+          <div className="relative w-full max-h-32 rounded-xl bg-night">
             <Image
-              className="max-h-32 w-48 rounded-xl object-cover opacity-70" // Ajoutez la classe "w-40" pour définir une largeur fixe de 40 (ajustez-la selon vos besoins)
+              className="w-full max-h-32 h-32 rounded-xl object-cover opacity-70"
               width={600}
               height={150}
               src={image}
@@ -36,13 +36,12 @@ export default function VideoSuggest({
           </div>
         </Link>
       </div>
-      <div className="flex flex-col gap-y-1">
+      <div className="w-full sm:w-1/2 flex flex-col gap-y-1 sm:gap-y-2 md:gap-y-3">
         <Link href={`/videos/${slug.current}`}>
-          <Heading level="h2" size="h4">
-            {title}
+          <Heading level="h2" size="h3">{title}
           </Heading>
         </Link>
-        <p className="text-lg text-secondarylight dark:text-primary">
+        <p className=" text-secondarylight dark:text-primary">
           {culturalPlace}
         </p>
       </div>

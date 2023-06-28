@@ -77,7 +77,7 @@ export default function ToggleShare({ description }: { description: string }) {
       <div className="relative">
         <Listbox.Options
           className={clsx(
-            'absolute right-[-50px] top-[30px] z-40 h-auto w-[190px] rounded-lg border bg-slate-50 p-4 text-sm font-semibold shadow-light outline-none dark:border-jetdark dark:bg-night dark:shadow-night'
+            'absolute right-[-5px] md:right-[-50px] top-[30px] z-40 h-auto w-[190px] rounded-lg border bg-slate-50 p-4 text-sm font-semibold shadow-light outline-none dark:border-jetdark dark:bg-night dark:shadow-night'
           )}
         >
           <div className="flex flex-col items-center gap-y-6">
