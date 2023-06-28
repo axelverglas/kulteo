@@ -14,7 +14,7 @@ export default function Hero() {
   return (
     <section className="hero relative flex h-screen min-h-screen flex-col justify-center">
       <div className="container max-w-7xl">
-        <h1 className="w-[30rem] font-roc text-4xl font-bold text-white md:w-[60rem] md:text-[56px] md:leading-[4.25rem]">
+        <h1 className="font-roc text-4xl font-bold text-white md:w-[60rem] md:text-[56px] md:leading-[4.25rem]">
           Entrez dans l&apos;écosystème qui rend la culture{' '}
           <span className="rounded-xl bg-secondarylight px-2 pt-1 text-white dark:bg-primary dark:text-night md:px-3 md:pt-2">
             accessible
