@@ -19,7 +19,7 @@ export default function Button({
   type = 'button',
 }: ButtonProps) {
   const commonClasses = clsx(
-    'inline-block rounded-lg bg-secondarylight dark:bg-secondary px-4 py-2 text-white transition-colors duration-300 dark:text-night hover:dark:border-jetdark hover:border-grayishblue hover:text-secondarylight hover:dark:text-secondary hover:dark:bg-night hover:bg-whitesmoke hover:border border-secondarylight border-secondary',
+    'inline-block rounded-lg bg-secondarylight dark:bg-secondary px-4 py-2 text-white transition-colors duration-300 dark:text-night hover:dark:border-jetdark hover:border-grayishblue hover:text-secondarylight hover:dark:text-secondary hover:dark:bg-night hover:bg-whitesmoke hover:border border-secondarylight dark:border-secondary',
     className
   );
 

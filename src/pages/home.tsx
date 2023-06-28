@@ -166,13 +166,21 @@ export default function Dashboard({
               <div>
                 {variant === 'culturalPlaces' ? (
                   <>
+                  <div className='flex justify-between items-center'>
                     <Heading level="h2" className="mb-6">
                       Ces{' '}
                       <span className="text-secondarylight dark:text-primary">
                         lieux culturels
                       </span>{' '}
-                      vont vous intéresser
+                      vont vous charmer
                     </Heading>
+                    <Link
+                    href={'/places/'}
+                    className="font-semibold text-secondarylight"
+                  >
+                    Tout voir
+                  </Link>
+                    </div>
                     {filteredCulturalPlaces.length > 0 ? (
                       <>
                         <p className="mb-6">
@@ -199,13 +207,21 @@ export default function Dashboard({
                   </>
                 ) : (
                   <>
+                     <div className='flex justify-between items-center'>
                     <Heading level="h2" className="mb-6">
                       Ces{' '}
                       <span className="text-secondarylight dark:text-primary">
-                        évènements
+                        événements
                       </span>{' '}
-                      vont vous intéresser
+                      vont vous charmer
                     </Heading>
+                    <Link
+                    href={'/events/'}
+                    className="font-semibold text-secondarylight"
+                  >
+                    Tout voir
+                  </Link>
+                    </div>
                     {filteredEvents.length > 0 ? (
                       <>
                         <p className="mb-6">

@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { sanityClient } from '@/sanity';
 import { groq } from 'next-sanity';
 import useSWRInfinite from 'swr/infinite';
-import VideoCard from '@/components/VideoCard';
 import { urlFor } from '@/sanity';
 import Layout from '@/components/Layout';
 import Section from '@/components/Section';
 import Container from '@/components/Container';
-import { Video } from '../../../typings';
 import Heading from '@/components/Heading';
 import { ArrowLeftIcon } from '@/components/Icons';
 import { useRouter } from 'next/router';
@@ -16,28 +14,27 @@ import { Type } from '../../../typings';
 import { fetchTypes } from '@/utils/fetchTypes';
 import FilterButton from '@/components/FilterButton';
 import { GetServerSideProps } from 'next';
+import Card from '@/components/Card';
+import { Event } from '../../../typings';
 
-const limit = 6;
+const limit = 9;
 
 const fetcher = (query: string) => sanityClient.fetch(query);
 
-const getVideosQuery = (filter: string) => groq`*[_type == "video" ${
-  filter ? `&& culturalplace->type->title == "${filter}"` : ''
+const getEventsQuery = (
+  filter: string
+) => groq`*[_type == "events" ${
+  filter ? `&& type->title == "${filter}"` : ''
 }] | order(_createdAt desc) {
-    _id,
-    name,
-    image,
-    "culturalPlace": culturalplace->name,
-    "culturalPlaceType": culturalplace->type->title,
-    url
+    ...,
+    "type": type->title
   }`;
 
 interface Props {
   eventTypes: Type[];
-  placeTypes: Type[];
 }
 
-export default function Videos({ placeTypes, eventTypes }: Props) {
+export default function Events({ eventTypes }: Props) {
   const router = useRouter();
   const handleGoBack = () => {
     router.back();
@@ -49,14 +46,13 @@ export default function Videos({ placeTypes, eventTypes }: Props) {
       // reached the end
       if (previousPageData && !previousPageData.length) return null;
 
-      // first page, we don't have `previousPageData`
       if (index === 0) {
-        return getVideosQuery(filter) + `[0...${limit}]`;
+        return getEventsQuery(filter) + `[0...${limit}]`;
       }
 
-      // using offset and limit
       return (
-        getVideosQuery(filter) + `[${index * limit}...${index * limit + limit}]`
+        getEventsQuery(filter) +
+        `[${index * limit}...${index * limit + limit}]`
       );
     },
     fetcher
@@ -66,7 +62,7 @@ export default function Videos({ placeTypes, eventTypes }: Props) {
     setFilter(value);
   };
 
-  const videos: Video[] = data ? [].concat(...data) : [];
+  const events: Event[] = data ? [].concat(...data) : [];
   const isLoadingInitialData = !data && !error;
   const isLoadingMore =
     isLoadingInitialData ||
@@ -78,7 +74,7 @@ export default function Videos({ placeTypes, eventTypes }: Props) {
   return (
     <>
       <Head>
-        <title>Toutes les rediffusions culturelles - Découvrez Kulteo</title>
+        <title>Tous les événements - Découvrez Kulteo</title>
         <meta
           name="description"
           content="Découvrez toutes nos diffusions culturelles passées et à venir, et ne manquez aucune expérience culturelle avec Kulteo."
@@ -92,31 +88,21 @@ export default function Videos({ placeTypes, eventTypes }: Props) {
                 <ArrowLeftIcon className="h-6 w-6 stroke-night dark:stroke-white" />
               </button>
               <Heading level="h1" className="text-2xl md:text-[2rem]">
-                Laissez-vous envoûter par nos{' '}
+                Ces{' '}
                 <span className="text-secondarylight dark:text-primary">
-                  rediffusions
-                </span>
+                  événements
+                </span>{' '}
+                vont vous charmer
               </Heading>
             </div>
             <div className="max-w-[90vw] overflow-x-auto hide-scrollbar">
-              <div className="inline-flex space-x-4">
+              <div className="inline-flex space-x-4 mb-6">
                 <FilterButton
                   active={filter === ''}
                   onClick={() => handleFilterChange('')}
                 >
                   Tous
                 </FilterButton>
-                {placeTypes.map(type => (
-                  <FilterButton
-                    key={type._id}
-                    active={filter === type.title}
-                    onClick={() => {
-                      handleFilterChange(type.title);
-                    }}
-                  >
-                    {type.title}
-                  </FilterButton>
-                ))}
                 {eventTypes.map(type => (
                   <FilterButton
                     key={type._id}
@@ -138,32 +124,33 @@ export default function Videos({ placeTypes, eventTypes }: Props) {
               </div>
             ) : (
               <>
-                {videos.length === 0 ? (
+                {events.length === 0 ? (
                   <p>Aucune vidéo pour le moment</p>
                 ) : (
                   <>
                     <p className="mb-6">
-                      {videos.length} résultat{videos.length > 1 ? 's' : ''}
+                      {events.length} résultat
+                      {events.length > 1 ? 's' : ''}
                     </p>
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-x-20 md:gap-y-10">
-                      {videos
-                        .filter(video =>
-                          filter === ''
-                            ? true
-                            : video.culturalPlaceType === filter
+                      {events
+                        .filter(events =>
+                          filter === '' ? true : events.type === filter
                         )
-                        .map(video => (
-                          <VideoCard
-                            key={video._id}
-                            title={video.name}
-                            image={urlFor(video.image).url()}
-                            culturalPlace={video.culturalPlace}
-                            url={video.url}
+                        .map(event => (
+                          <Card
+                            key={event._id}
+                            title={event.name}
+                            description={event.description}
+                            address={event.address}
+                            image={urlFor(event.images).url()}
+                            type={event.type}
+                            link={`/events/${event.slug.current}`}
                           />
                         ))}
                     </div>
                     <div className="mt-10 flex items-center justify-center">
-                    {!isReachingEnd && (
+                      {!isReachingEnd && (
                         <button
                           disabled={isLoadingMore}
                           onClick={() => setSize(size + 1)}
@@ -171,7 +158,7 @@ export default function Videos({ placeTypes, eventTypes }: Props) {
                         >
                           {isLoadingMore
                             ? 'Chargement...'
-                            : 'Voir plus de vidéos'}
+                            : 'Voir plus d\'événements'}
                         </button>
                       )}
                     </div>
@@ -202,12 +189,10 @@ const SkeletonCard = () => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const types: Type[] = await fetchTypes();
-  const placeTypes = types.filter(type => type.category === 'place');
   const eventTypes = types.filter(type => type.category === 'event');
 
   return {
     props: {
-      placeTypes,
       eventTypes,
     },
   };

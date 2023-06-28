@@ -77,18 +77,21 @@ export default function NewsletterForm() {
               </p>
             )}
             <div className="mt-8 flex items-start">
-                <input
-                  id='checkbox'
-                  type="checkbox"
-                  {...register('checkbox')}
-                  className="mt-1 border border-white bg-transparent"
-                />
-                <label htmlFor='checkbox' className="ml-2 block w-full text-xs md:w-[405px]">
-                  En validant votre inscription, vous acceptez que{' '}
-                  {siteConfig.name} mémorise et utilise votre adresse email dans
-                  le but de vous envoyer mensuellement notre lettre
-                  d&apos;informations
-                </label>
+              <input
+                id="checkbox"
+                type="checkbox"
+                {...register('checkbox')}
+                className="mt-1 border border-white bg-transparent"
+              />
+              <label
+                htmlFor="checkbox"
+                className="ml-2 block w-full text-xs md:w-[405px]"
+              >
+                En validant votre inscription, vous acceptez que{' '}
+                {siteConfig.name} mémorise et utilise votre adresse email dans
+                le but de vous envoyer mensuellement notre lettre
+                d&apos;informations
+              </label>
             </div>
             {errors.checkbox && (
               <p className="mt-2 text-center text-red-500">
