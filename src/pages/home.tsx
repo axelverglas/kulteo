@@ -171,7 +171,6 @@ export default function Dashboard({
               <div>
                 {variant === 'culturalPlaces' ? (
                   <>
-                    <div className="flex items-center justify-between">
                       <Heading level="h2" className="mb-6">
                         Ces{' '}
                         <span className="text-secondarylight dark:text-primary">
@@ -179,19 +178,20 @@ export default function Dashboard({
                         </span>{' '}
                         vont vous charmer
                       </Heading>
-                      <Link
+                    {filteredCulturalPlaces.length > 0 ? (
+                      <>
+                        <div className='flex justify-between items-center mb-6'>
+                        <p>
+                          {filteredCulturalPlaces.length} résultat
+                          {filteredCulturalPlaces.length > 1 ? 's' : ''}
+                        </p>
+                        <Link
                         href={'/places/'}
                         className="font-semibold text-secondarylight"
                       >
                         Tout voir
                       </Link>
-                    </div>
-                    {filteredCulturalPlaces.length > 0 ? (
-                      <>
-                        <p className="mb-6">
-                          {filteredCulturalPlaces.length} résultat
-                          {filteredCulturalPlaces.length > 1 ? 's' : ''}
-                        </p>
+                        </div>
                         <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-x-20 md:gap-y-10">
                           {filteredCulturalPlaces.slice(0, 6).map(place => (
                             <Card
@@ -212,7 +212,6 @@ export default function Dashboard({
                   </>
                 ) : (
                   <>
-                    <div className="flex items-center justify-between">
                       <Heading level="h2" className="mb-6">
                         Ces{' '}
                         <span className="text-secondarylight dark:text-primary">
@@ -220,19 +219,20 @@ export default function Dashboard({
                         </span>{' '}
                         vont vous charmer
                       </Heading>
-                      <Link
+                    {filteredEvents.length > 0 ? (
+                      <>
+                      <div className='flex justify-between items-center mb-6'>
+                        <p>
+                          {filteredEvents.length} résultat
+                          {filteredEvents.length > 1 ? 's' : ''}
+                        </p>
+                        <Link
                         href={'/events/'}
                         className="font-semibold text-secondarylight"
                       >
                         Tout voir
                       </Link>
-                    </div>
-                    {filteredEvents.length > 0 ? (
-                      <>
-                        <p className="mb-6">
-                          {filteredEvents.length} résultat
-                          {filteredEvents.length > 1 ? 's' : ''}
-                        </p>
+                      </div>
                         <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-20 md:gap-y-10">
                           {filteredEvents.slice(0, 6).map(event => (
                             <Card
