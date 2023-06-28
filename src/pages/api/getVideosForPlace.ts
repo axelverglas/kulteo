@@ -15,6 +15,7 @@ const query = (placeId: string) => groq`
     url,
     image,
     type,
+    slug,
     "culturalPlace": culturalplace->name,
   }
 `;
