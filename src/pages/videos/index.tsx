@@ -46,15 +46,11 @@ export default function Videos({ placeTypes, eventTypes }: Props) {
 
   const { data, error, size, setSize } = useSWRInfinite(
     (index, previousPageData) => {
-      // reached the end
       if (previousPageData && !previousPageData.length) return null;
-
-      // first page, we don't have `previousPageData`
       if (index === 0) {
         return getVideosQuery(filter) + `[0...${limit}]`;
       }
 
-      // using offset and limit
       return (
         getVideosQuery(filter) + `[${index * limit}...${index * limit + limit}]`
       );
@@ -87,18 +83,7 @@ export default function Videos({ placeTypes, eventTypes }: Props) {
       <Layout>
         <Section>
           <Container>
-            <div className="mb-6 flex gap-x-3">
-              <button onClick={handleGoBack}>
-                <ArrowLeftIcon className="h-6 w-6 stroke-night dark:stroke-white" />
-              </button>
-              <Heading level="h1" className="text-2xl md:text-[2rem]">
-                Laissez-vous envoûter par nos{' '}
-                <span className="text-secondarylight dark:text-primary">
-                  rediffusions
-                </span>
-              </Heading>
-            </div>
-            <div className="max-w-[90vw] overflow-x-auto hide-scrollbar">
+            <div className="mb-6 max-w-[90vw] overflow-x-auto hide-scrollbar">
               <div className="inline-flex space-x-4">
                 <FilterButton
                   active={filter === ''}
@@ -130,6 +115,17 @@ export default function Videos({ placeTypes, eventTypes }: Props) {
                 ))}
               </div>
             </div>
+            <div className="mb-6 flex gap-x-3">
+              <button onClick={handleGoBack}>
+                <ArrowLeftIcon className="h-6 w-6 stroke-night dark:stroke-white" />
+              </button>
+              <Heading level="h1" className="text-2xl md:text-[2rem]">
+                Laissez-vous envoûter par nos{' '}
+                <span className="text-secondarylight dark:text-primary">
+                  rediffusions
+                </span>
+              </Heading>
+            </div>
             {isLoadingInitialData ? (
               <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-x-20 md:gap-y-10">
                 {[...Array(limit)].map((_, index) => (
@@ -159,11 +155,12 @@ export default function Videos({ placeTypes, eventTypes }: Props) {
                             image={urlFor(video.image).url()}
                             culturalPlace={video.culturalPlace}
                             url={video.url}
+                            slug={video.slug.current}
                           />
                         ))}
                     </div>
                     <div className="mt-10 flex items-center justify-center">
-                    {!isReachingEnd && (
+                      {!isReachingEnd && (
                         <button
                           disabled={isLoadingMore}
                           onClick={() => setSize(size + 1)}

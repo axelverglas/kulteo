@@ -2,41 +2,34 @@ import React, { useState } from 'react';
 import { sanityClient } from '@/sanity';
 import { groq } from 'next-sanity';
 import useSWRInfinite from 'swr/infinite';
-import { urlFor } from '@/sanity';
 import Layout from '@/components/Layout';
 import Section from '@/components/Section';
 import Container from '@/components/Container';
+import { Post } from '../../../typings';
 import Heading from '@/components/Heading';
-import { ArrowLeftIcon } from '@/components/Icons';
-import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { Type } from '../../../typings';
-import { fetchTypes } from '@/utils/fetchTypes';
 import FilterButton from '@/components/FilterButton';
 import { GetServerSideProps } from 'next';
-import Card from '@/components/Card';
-import { Event } from '../../../typings';
+import { fetchPostCategory } from '@/utils/fetchPosts';
+import PostCard from '@/components/PostCard';
 
 const limit = 9;
 
 const fetcher = (query: string) => sanityClient.fetch(query);
 
-const getEventsQuery = (filter: string) => groq`*[_type == "events" ${
-  filter ? `&& type->title == "${filter}"` : ''
+const getPostQuery = (filter: string) => groq`*[_type == "post" ${
+  filter ? `&& category->title == "${filter}"` : ''
 }] | order(_createdAt desc) {
     ...,
-    "type": type->title
+    "category": category->
   }`;
 
 interface Props {
-  eventTypes: Type[];
+  PostType: Type[];
 }
 
-export default function Events({ eventTypes }: Props) {
-  const router = useRouter();
-  const handleGoBack = () => {
-    router.back();
-  };
+export default function PostList({ PostType }: Props) {
   const [filter, setFilter] = useState('');
 
   const { data, error, size, setSize } = useSWRInfinite(
@@ -45,11 +38,11 @@ export default function Events({ eventTypes }: Props) {
       if (previousPageData && !previousPageData.length) return null;
 
       if (index === 0) {
-        return getEventsQuery(filter) + `[0...${limit}]`;
+        return getPostQuery(filter) + `[0...${limit}]`;
       }
 
       return (
-        getEventsQuery(filter) + `[${index * limit}...${index * limit + limit}]`
+        getPostQuery(filter) + `[${index * limit}...${index * limit + limit}]`
       );
     },
     fetcher
@@ -59,7 +52,7 @@ export default function Events({ eventTypes }: Props) {
     setFilter(value);
   };
 
-  const events: Event[] = data ? [].concat(...data) : [];
+  const post: Post[] = data ? [].concat(...data) : [];
   const isLoadingInitialData = !data && !error;
   const isLoadingMore =
     isLoadingInitialData ||
@@ -71,7 +64,7 @@ export default function Events({ eventTypes }: Props) {
   return (
     <>
       <Head>
-        <title>Tous les événements - Découvrez Kulteo</title>
+        <title>Tous les articles du blog - Découvrez Kulteo</title>
         <meta
           name="description"
           content="Découvrez toutes nos diffusions culturelles passées et à venir, et ne manquez aucune expérience culturelle avec Kulteo."
@@ -80,6 +73,15 @@ export default function Events({ eventTypes }: Props) {
       <Layout>
         <Section>
           <Container>
+            <div className="mb-6">
+              <Heading level="h1" className="mb-4 text-2xl md:text-[2rem]">
+                Découvrez notre blog
+              </Heading>
+              <p>
+                Laissez votre esprit s&apos;épanouir au contact de sujets
+                culturels variés
+              </p>
+            </div>
             <div className="mb-6 max-w-[90vw] overflow-x-auto hide-scrollbar">
               <div className="inline-flex space-x-4">
                 <FilterButton
@@ -88,7 +90,7 @@ export default function Events({ eventTypes }: Props) {
                 >
                   Tous
                 </FilterButton>
-                {eventTypes.map(type => (
+                {PostType.map(type => (
                   <FilterButton
                     key={type._id}
                     active={filter === type.title}
@@ -101,18 +103,9 @@ export default function Events({ eventTypes }: Props) {
                 ))}
               </div>
             </div>
-            <div className="mb-6 flex gap-x-3">
-              <button onClick={handleGoBack}>
-                <ArrowLeftIcon className="h-6 w-6 stroke-night dark:stroke-white" />
-              </button>
-              <Heading level="h1" className="text-2xl md:text-[2rem]">
-                Ces{' '}
-                <span className="text-secondarylight dark:text-primary">
-                  événements
-                </span>{' '}
-                vont vous charmer
-              </Heading>
-            </div>
+            <Heading level="h2" size="h3" className="mb-4">
+              Tous les articles
+            </Heading>
             {isLoadingInitialData ? (
               <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-x-20 md:gap-y-10">
                 {[...Array(limit)].map((_, index) => (
@@ -121,30 +114,22 @@ export default function Events({ eventTypes }: Props) {
               </div>
             ) : (
               <>
-                {events.length === 0 ? (
-                  <p>Aucune vidéo pour le moment</p>
+                {post.length === 0 ? (
+                  <p>Aucuns articles pour le moment</p>
                 ) : (
                   <>
                     <p className="mb-6">
-                      {events.length} résultat
-                      {events.length > 1 ? 's' : ''}
+                      {post.length} résultat
+                      {post.length > 1 ? 's' : ''}
                     </p>
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-x-20 md:gap-y-10">
-                      {events
-                        .filter(events =>
-                          filter === '' ? true : events.type === filter
+                      {post
+                        .filter(post =>
+                          filter === '' ? true : post.category.title === filter
                         )
-                        .map(event => (
-                          <Card
-                            key={event._id}
-                            title={event.name}
-                            description={event.description}
-                            address={event.address}
-                            image={urlFor(event.images).url()}
-                            type={event.type}
-                            link={`/events/${event.slug.current}`}
-                          />
-                        ))}
+                        .map(post => {
+                          return <PostCard key={post._id} post={post} />;
+                        })}
                     </div>
                     <div className="mt-10 flex items-center justify-center">
                       {!isReachingEnd && (
@@ -155,7 +140,7 @@ export default function Events({ eventTypes }: Props) {
                         >
                           {isLoadingMore
                             ? 'Chargement...'
-                            : "Voir plus d'événements"}
+                            : "Voir plus d'articles"}
                         </button>
                       )}
                     </div>
@@ -172,35 +157,25 @@ export default function Events({ eventTypes }: Props) {
 
 const SkeletonCard = () => {
   return (
-    <article className="flex w-full flex-col gap-y-6 rounded-xl border border-grayishblue bg-slate-50 p-4 shadow-light dark:border-jetdark dark:bg-black dark:shadow-night">
-      <div className="relative w-full rounded-xl">
-        <div className="h-36 w-full animate-pulse rounded-xl bg-gray-300 dark:bg-jetdark"></div>
-        <div className="absolute left-3 top-3 animate-pulse rounded-lg bg-night/80 px-2 pb-0.5 pt-1 text-whitesmoke dark:bg-whitesmoke/80 dark:text-night"></div>
-      </div>
-      <div className="flex h-full flex-col justify-between">
-        <div className="flex flex-col gap-y-4">
-          <div className="flex items-center justify-between">
-            <div className="h-4 w-2/3 animate-pulse bg-gray-300 dark:bg-jetdark"></div>
-            <div className="h-6 w-6 animate-pulse bg-gray-300 dark:bg-jetdark"></div>
-          </div>
-          <div className="h-4 w-full animate-pulse bg-gray-300 dark:bg-jetdark"></div>
-          <div className="flex items-center gap-x-2">
-            <div className="h-6 w-6 animate-pulse bg-gray-300 dark:bg-jetdark"></div>
-            <div className="h-4 w-1/2 animate-pulse bg-gray-300 dark:bg-jetdark"></div>
-          </div>
+    <div className="rounded-lg border border-grayishblue bg-white shadow-light dark:border-jetdark dark:bg-black dark:shadow-night">
+      <div className="h-60 w-full animate-pulse rounded-t-lg bg-gray-300 dark:bg-jetdark"></div>
+      <div className="p-4">
+        <div className="mb-4 flex justify-between">
+          <div className="h-4 w-1/4 animate-pulse rounded-lg bg-gray-300 px-2 py-1 text-whitesmoke dark:bg-night dark:text-night"></div>
+          <div className="h-4 w-1/4 animate-pulse bg-gray-300 dark:bg-jetdark"></div>
         </div>
+        <div className="h-6 w-full animate-pulse bg-gray-300 dark:bg-jetdark"></div>
       </div>
-    </article>
+    </div>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const types: Type[] = await fetchTypes();
-  const eventTypes = types.filter(type => type.category === 'event');
+  const PostType: Type[] = await fetchPostCategory();
 
   return {
     props: {
-      eventTypes,
+      PostType,
     },
   };
 };

@@ -3,7 +3,7 @@ import { groq } from 'next-sanity';
 import { sanityClient } from '@/sanity';
 import { CulturalPlace } from '../../../typings';
 
-const query = groq`*[_type == "culturalPlace"]{
+const query = groq`*[_type == "culturalPlace"] {
   _id,
   _createdAt,
   _rev,

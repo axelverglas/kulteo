@@ -82,6 +82,7 @@ export default function ContactForm() {
                     register={register('message')}
                     error={errors.message?.message}
                     textarea
+                    className="min-h-[12rem]"
                   />
                   <Button type="submit">Envoyer le message</Button>
                 </form>

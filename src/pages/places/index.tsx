@@ -43,7 +43,6 @@ export default function CulturalPlace({ placeTypes }: Props) {
 
   const { data, error, size, setSize } = useSWRInfinite(
     (index, previousPageData) => {
-      // reached the end
       if (previousPageData && !previousPageData.length) return null;
 
       if (index === 0) {
@@ -83,20 +82,8 @@ export default function CulturalPlace({ placeTypes }: Props) {
       <Layout>
         <Section>
           <Container>
-            <div className="mb-6 flex gap-x-3">
-              <button onClick={handleGoBack}>
-                <ArrowLeftIcon className="h-6 w-6 stroke-night dark:stroke-white" />
-              </button>
-              <Heading level="h1" className="text-2xl md:text-[2rem]">
-                Ces{' '}
-                <span className="text-secondarylight dark:text-primary">
-                  lieux culturels
-                </span>{' '}
-                vont vous charmer
-              </Heading>
-            </div>
-            <div className="max-w-[90vw] overflow-x-auto hide-scrollbar">
-              <div className="inline-flex space-x-4 mb-6">
+            <div className="mb-6 max-w-[90vw] overflow-x-auto hide-scrollbar">
+              <div className="inline-flex space-x-4">
                 <FilterButton
                   active={filter === ''}
                   onClick={() => handleFilterChange('')}
@@ -115,6 +102,18 @@ export default function CulturalPlace({ placeTypes }: Props) {
                   </FilterButton>
                 ))}
               </div>
+            </div>
+            <div className="mb-6 flex gap-x-3">
+              <button onClick={handleGoBack}>
+                <ArrowLeftIcon className="h-6 w-6 stroke-night dark:stroke-white" />
+              </button>
+              <Heading level="h1" className="text-2xl md:text-[2rem]">
+                Ces{' '}
+                <span className="text-secondarylight dark:text-primary">
+                  lieux culturels
+                </span>{' '}
+                vont vous charmer
+              </Heading>
             </div>
             {isLoadingInitialData ? (
               <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-x-20 md:gap-y-10">
@@ -175,13 +174,23 @@ export default function CulturalPlace({ placeTypes }: Props) {
 
 const SkeletonCard = () => {
   return (
-    <article className="flex h-auto w-full flex-col justify-between gap-y-6">
+    <article className="flex w-full flex-col gap-y-6 rounded-xl border border-grayishblue bg-slate-50 p-4 shadow-light dark:border-jetdark dark:bg-black dark:shadow-night">
       <div className="relative w-full rounded-xl">
-        <div className="h-60 w-full animate-pulse rounded-xl bg-gray-300 dark:bg-jetdark"></div>
+        <div className="h-36 w-full animate-pulse rounded-xl bg-gray-300 dark:bg-jetdark"></div>
+        <div className="absolute left-3 top-3 animate-pulse rounded-lg bg-night/80 px-2 pb-0.5 pt-1 text-whitesmoke dark:bg-whitesmoke/80 dark:text-night"></div>
       </div>
-      <div className="flex flex-col gap-y-1">
-        <div className="h-4 w-2/3 animate-pulse bg-gray-300 dark:bg-jetdark"></div>
-        <div className="h-4 w-1/2 animate-pulse bg-gray-300 dark:bg-jetdark"></div>
+      <div className="flex h-full flex-col justify-between">
+        <div className="flex flex-col gap-y-4">
+          <div className="flex items-center justify-between">
+            <div className="h-4 w-2/3 animate-pulse bg-gray-300 dark:bg-jetdark"></div>
+            <div className="h-6 w-6 animate-pulse bg-gray-300 dark:bg-jetdark"></div>
+          </div>
+          <div className="h-4 w-full animate-pulse bg-gray-300 dark:bg-jetdark"></div>
+          <div className="flex items-center gap-x-2">
+            <div className="h-6 w-6 animate-pulse bg-gray-300 dark:bg-jetdark"></div>
+            <div className="h-4 w-1/2 animate-pulse bg-gray-300 dark:bg-jetdark"></div>
+          </div>
+        </div>
       </div>
     </article>
   );

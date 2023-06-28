@@ -5,6 +5,7 @@ type HeadingLevel = 'h1' | 'h2' | 'h3' | 'h4';
 
 interface HeadingProps {
   level: HeadingLevel;
+  size?: HeadingLevel;
   children: ReactNode;
   title?: string;
   className?: string;
@@ -19,6 +20,7 @@ const styleConfig: Record<HeadingLevel, string> = {
 
 export default function Heading({
   level,
+  size = level,
   children,
   className,
   title,
@@ -26,7 +28,7 @@ export default function Heading({
   const HeadingTag = level;
 
   return (
-    <HeadingTag title={title} className={clsx(styleConfig[level], className)}>
+    <HeadingTag title={title} className={clsx(styleConfig[size], className)}>
       {children}
     </HeadingTag>
   );

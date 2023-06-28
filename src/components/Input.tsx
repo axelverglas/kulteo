@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import clsx from 'clsx';
 
 interface InputProps {
   id: string;
-  label: string;
+  label?: string;
   type?: string;
   placeholder: string;
   register: any;
   error?: string | undefined;
   textarea?: boolean;
+  className?: string;
 }
 
 export default function Input({
@@ -19,8 +21,32 @@ export default function Input({
   register,
   error,
   textarea = false,
+  className = '',
 }: InputProps) {
   const [showPassword, setShowPassword] = useState(false);
+  const handleTextareaInput = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const textarea = event.target;
+    textarea.style.height = 'auto';
+    textarea.style.height = textarea.scrollHeight + 'px';
+  };
+
+  const inputClassName = clsx(
+    'w-full',
+    'rounded-lg',
+    'border',
+    {
+      'border-red-500': error,
+      'border-secondarylight dark:border-secondary': !error,
+    },
+    'bg-transparent',
+    'px-2',
+    'py-2',
+    'outline-none',
+    className // Utiliser clsx pour gérer les classes dynamiques
+  );
+
   return (
     <div className="mb-4">
       <label className="mb-2 block" htmlFor={id}>
@@ -29,23 +55,16 @@ export default function Input({
       <div className="relative">
         {textarea ? (
           <textarea
-            className={`min-h-[12rem] w-full rounded-lg border ${
-              error
-                ? 'border-red-500'
-                : 'border-secondarylight dark:border-secondary'
-            } bg-transparent px-2 py-2 outline-none`}
+            className={inputClassName} // Utilisation de la classe personnalisée
             {...register}
             id={id}
             placeholder={placeholder}
+            onInput={handleTextareaInput}
           />
         ) : (
           <>
             <input
-              className={`w-full rounded-lg border ${
-                error
-                  ? 'border-red-500'
-                  : 'border-secondarylight dark:border-secondary'
-              } bg-transparent px-2 py-2 outline-none`}
+              className={inputClassName} // Utilisation de la classe personnalisée
               {...register}
               type={showPassword ? 'text' : type}
               id={id}

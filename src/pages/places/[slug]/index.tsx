@@ -175,6 +175,7 @@ export default function Single({ culturalPlace, videos, events }: Props) {
                               image={urlFor(video.image).url()}
                               culturalPlace={culturalPlace.name}
                               url={video.url}
+                              slug={video.slug.current}
                             />
                           ))}
                         </div>
@@ -204,6 +205,7 @@ export default function Single({ culturalPlace, videos, events }: Props) {
                               image={urlFor(video.image).url()}
                               culturalPlace={culturalPlace.name}
                               url={video.url}
+                              slug={video.slug.current}
                             />
                           ))}
                         </div>

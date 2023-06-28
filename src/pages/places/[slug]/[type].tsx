@@ -53,6 +53,7 @@ export default function Videos({ videos, culturalPlace, videoType }: Props) {
                   image={urlFor(video.image).url()}
                   culturalPlace={culturalPlace.name}
                   url={video.url}
+                  slug={video.slug.current}
                 />
               ))}
             </div>
